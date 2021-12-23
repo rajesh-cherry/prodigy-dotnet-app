@@ -1,0 +1,186 @@
+﻿
+@{
+    ViewData["Title"] = "EmailNotReceived";
+    Layout = "~/Shared/_Layout.cshtml";
+    @*<link href="~/Content/css/Layout.css" rel="stylesheet" />*@
+    @System.Web.Optimization.Styles.Render("~/css/Layoutcss")
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+}
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Content/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/Scripts/Welcome/EmailNotReceived.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+
+<div class="d-flex flex-column justify-content-center">
+    <h5 class="text-center font-weight-bold mt-5 mb-0">Register for MyAccount</h5>
+
+    <p class="font-weight-normal font_18 text-center text_grey mt-3 mb-0">
+        No email on file.Please enter your preferred email to register.
+    </p>
+
+    <div class="text-center mt-3">
+        <h6 id="headerAccount" style="font-weight:normal">Account #: </h6>
+    </div>
+    <input id="getbrandUrl" value="@System.Configuration.ConfigurationManager.AppSettings["BrandCode"]" style="display:none" />
+
+    <input type="hidden" id="hnProdUrl" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["AccountPayURL"]' />
+
+    <form id="emailNotReceivedForm" class="form_style">
+
+        <div class="form-group">
+            <label for="usr">Email</label>
+            <input type="text" placeholder="Enter Email" class="form-control" id="txtUser" name="User">
+            <span id="error" style="display :none;color:red"></span>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label main font_16 text_primary">
+                <input id="chkTCPAEmail" type="checkbox" class="form-check-input" value="">Agree to TCPA Compliance
+                <span class="geekmark"></span>
+            </label>
+        </div>
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <button type="button" id="btnContinue" class="btnContinue  btn btn_primary_outline mt_40 w-50">Continue</button>
+            <a id="btnsubscription" class="font_14 font-weight-bold text_success text-decoration-none mt-5" href="#" data-toggle="modal" >Subscription</a>
+        </div>
+    </form>
+    <div class="loader" id="AjaxLoader" style="display: none;">
+    </div>
+</div>
+
+<div id="SubscriptionPopup" class="modal  pr-0" role="dialog" style="background-color:#00000082;">
+    <div class="modal-dialog modal-dialog-centered">
+
+        <!-- Modal content-->
+        <div class="modal-content p-4">
+
+            <div class="modal-header p-0 border-0">
+                <h5 class="modal-title font-weight-bold">Subscriptions:</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body p-0 subscription_check">
+                <div class="table-responsive pt-4">
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td class="pl-0">
+                                    <p class="font_12 mb-0">Products and Services</p>
+                                    <p class="font_10">Find out more about our services and refferal rewards</p>
+                                </td>
+                                <td>
+                                    <div class="form-check">
+                                        <label class="form-check-label main font_14 text_grey">
+                                            <input id="chkProductAndServices" type="checkbox" class="form-check-input" value="">
+                                            <span class="geekmark"></span>
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-0">
+                                    <p class="font_12 mb-0">
+                                        Energy Efficiency
+                                    </p>
+                                    <p class="font_10">Get tips on lowering your bill and learn about our energy plans.</p>
+                                </td>
+                                <td>
+                                    <div class="form-check">
+                                        <label class="form-check-label main font_14 text_grey">
+                                            <input id="chkEnergyEfficiency" type="checkbox" class="form-check-input" value="">
+                                            <span class="geekmark"></span>
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-0">
+                                    <p class="font_12 mb-0">
+                                        Third party offers and promotions
+                                    </p>
+                                    <p class="font_10"> Save on power products and smart thermostats.</p>
+                                </td>
+                                <td>
+                                    <div class="form-check">
+                                        <label class="form-check-label main font_14 text_grey">
+                                            <input id="chkThirdParty" type="checkbox" class="form-check-input" value="">
+                                            <span class="geekmark"></span>
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-0">
+                                    <p class="font_12 pt-2">Auto-payment</p>
+                                </td>
+                                <td>
+                                    <div class="form-check">
+                                        <label class="form-check-label main font_14 text_grey">
+                                            <input id="chkAutoPayment" type="checkbox" class="form-check-input" value="">
+                                            <span class="geekmark"></span>
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-0">
+                                    <p class="font_12 mb-0">
+                                        Monthly Bill
+                                    </p>
+                                    <p class="font_10">
+                                        Opted for mail on <br />
+                                        1555 Lake Woodlands Dr. Spring. TX 77380
+                                    </p>
+                                </td>
+                                <td>
+                                    <div class="form-check">
+                                        <label class="form-check-label main font_14 text_grey">
+                                            <input id="chkMonthlyBill" type="checkbox" class="form-check-input" value="">
+                                            <span class="geekmark"></span>
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-0">
+                                    <p class="font_12 mb-0">
+                                        Request Letter
+                                    </p>
+                                    <p class="font_10"><a class="font-weight-normal text-decoration-none text_success" href="#">Letter of Service</a> and <a class="text_success text-decoration-none font-weight-normal" href="#">Letter of Credit</a>  documents</p>
+                                </td>
+                                <td>
+                                    <div class="form-check">
+                                        <label class="form-check-label main font_14 text_grey">
+                                            <input id="chkRequestLetter" type="checkbox" class="form-check-input" value="">
+                                            <span class="geekmark"></span>
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="d-flex justify-content-center">
+                                    <div class="form-check">
+                                        <label class="form-check-label main font_16 ml-4 pt-2 text_primary">
+                                            <input id="chkTCPA" type="checkbox" class="form-check-input" value="">Agree to TCPA Compliance
+                                            <span class="geekmark"></span>
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center p-0" colspan="2">
+                                    @*<button type="button" id="btnContinue" class="btn btn_primary_outline pl-5 pr-5 mt_50">Save</button>*@
+                                    <button type="button" id="btnNxt" class="btn btn_primary_outline btnNxt mt_70 w-50">Save</button>
+
+                                    @*<button id="subscritionSave" class="btn btn_primary_outline pl-5 pr-5 mt_50">Save</button>*@
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

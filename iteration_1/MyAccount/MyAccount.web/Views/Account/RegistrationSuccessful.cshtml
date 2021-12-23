@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "RegistrationSuccessful";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <script src="~/Scripts/Register/RegistrationSuccessful.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+}
+<script>
+    setTimeout(function () {
+        window.location.href = '../';
+    }, 3000);
+</script>
+<input type="hidden" id="hnProdUrl" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["AccountPayURL"]' />
+<input id="getbrandUrl" value="@System.Configuration.ConfigurationManager.AppSettings["BrandCode"]" style="display:none" />
+
+<div class="d-flex flex-column justify-content-center">
+    <div style="margin-top:150px;text-align:center">
+        <img src="~/Content/images/Successfull.png" />
+        <h3 class="font-weight-bold mt_60">
+            Registration<br />
+            Successful
+        </h3>
+
+        <h6 class="font-weight-normal mt_40">Your Account has been successfully created.</h6>
+    </div>
+    <div class="mt-5 text-center">
+        <p class="font_12 mt-5"></p>
+    </div>
+</div>
+

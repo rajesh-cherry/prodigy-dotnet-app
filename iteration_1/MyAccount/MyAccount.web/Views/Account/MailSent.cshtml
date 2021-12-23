@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "MailSent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    setTimeout(function () {
+        window.location.href = '../';
+    }, 3000);
+</script>
+<input type="hidden" id="hnProdUrl" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["AccountPayURL"]' />
+<input id="getbrandUrl" value="@System.Configuration.ConfigurationManager.AppSettings["BrandCode"]" style="display:none" />
+
+<div class="d-flex flex-column justify-content-center">
+    <div style="margin-top:150px;text-align:center">
+        <img src="~/Content/images/Successfull.png" />
+        <h3 class="font-weight-bold mt_30">
+            Verification <br />
+            mail sent
+        </h3>
+
+        <h6 class="font-weight-normal mt-4">
+            Please check your email to reset your password. Be sure to check your spam folder.
+        </h6>
+    </div>
+    @*<div class="mt-5 text-center">
+            <p class="font_12 mt-5">If you haven't received the email please check your spam folder.</p>
+        </div>*@
+</div>
+

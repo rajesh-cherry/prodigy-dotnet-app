@@ -1,0 +1,111 @@
+﻿@{
+    ViewData["Title"] = "ForgotEmail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+}
+
+<script src="~/Scripts/Account/ForgotEmail.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<div>
+    <h5 class="font-weight-bold text-center mt-5">Welcome to @System.Configuration.ConfigurationManager.AppSettings["WelcomeTitle"]</h5>
+    <h6 class="font-weight-normal text-center text_grey mt-3">Please enter your details</h6>
+    <input id="getbrandUrl" value="@System.Configuration.ConfigurationManager.AppSettings["BrandCode"]" style="display:none" />
+    <input type="hidden" id="hnProdUrl" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["AccountPayURL"]' />
+    <input type="hidden" id="baseURL" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["baseURL"]' />
+    <input type="hidden" id="enrollURL" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["EnrollURL"]' />
+
+
+    <form id="welcomeForm" class="form_style">
+        <div class="form-group">
+            <label for="txtUser">UserName/Account Number</label>
+            <input placeholder="UserName/Account Number" type="text" class="form-control" id="txtUser" name="User">
+            <span id="error" class="error"></span>
+        </div>
+        <div class="mt_34 ml-2 mr-2 d-flex justify-content-between align-items-start">
+
+            <h6 class=" forgot primary_color forgot_text">@Html.ActionLink("Login with email", "Index", "Account") </h6>
+            <p class="font_14 font-weight-bold text_primary" style="width: 131px;">
+                @Html.ActionLink("Can't find your account number?", "Retrieve", "Account")
+            </p>
+            @*<p class="font_14 font-weight-bold text_primary">Login with email</p>*@
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="button" id="btnNxt" class="btn btn_primary_outline btnNxt mt_50 w-50">Continue</button>
+        </div>
+    </form>
+
+
+    <div class="loader" id="AjaxLoader" style="display: none;">
+    </div>
+    <!-- The Modal -->
+    <div class="modal" id="InvalidUserModal" style="background-color:#00000082; display: none;">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <h5 class="font-weight-bold mb-0">
+                        Account No - <span id="headerAccount"></span>  or
+                    </h5>
+                    <h5 class="font-weight-bold"> Email - <span id="headerEmail"></span></h5>
+                    @*<div id="FrontierGexaText">
+                        <p class="font_14 text_grey mt-2">
+                            The Frontier Utilities App does not currently support your account, however all of the app features can be found in the Frontier online portal.
+                        </p>
+                        <p class="font_14 text_grey">
+                            "Go to Frontier Utilities Online Account Portal"
+                        </p>
+                    </div>*@
+                    <div class="gemsuser" id="GexaText" style="display:none">
+                        <p class="font_14 text_grey mt-2">
+                            The Gexa Energy App does not currently support your account, however all of the app features can be found in the Gexa online portal.
+                        </p>
+                        <p class="font_14 text_grey"> "Go to Gexa Energy Online Account Portal"</p>
+                    </div>
+                    <div class="nonresidential" id="FrontierText">
+                        <p class="font_14 text_grey mt-2">
+                            Our records indicate you are a Frontier Utilities Commercial customer. The Frontier Utilities App does not currently support Commercial customers. Please log in to the online portal to access your account.
+                        </p>
+                    </div>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer border-0" id="pwdDisabled1">
+                    <a class="font_14 text_primary font-weight-bold text-decoration-none" id="cancelModal" href="" data-dismiss="modal">Cancel</a>
+                    <button id="Gexa_NewId" class="btn btn_primary pl-5 pr-5 ml-3 gemsuser" onclick="location.href='https://myaccount.gexaenergy.com/'">Go to MyGexa</button>
+                    @*<button id="Gexa_FrontierId" class="btn btn_primary pl-5 pr-5 ml-3" onclick="location.href='https://myaccount.gexaenergy.com/'">For Best Experience Download Frontier Mobile App</button>*@
+                    <button id="Frontier_NewId" class="btn btn_primary pl-5 pr-5 ml-3 nonresidential" onclick="location.href='https://myaccount.frontierutilities.com/'">Go to Frontier Utilities</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="myModal1" style="background-color:#00000082">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header border border-bottom-0">
+                    <h5 class="modal-title font-weight-bold">Too Many Attempts</h5>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body pt-0 pb-0">
+                    <p class="font_14">After 5 consecutive unsuccessful login attempts, your account has been locked. Please wait for 5 minutes before you try again or reset your password.</p>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer border-top-0">
+                    <label id="timer" class="font_14 font-weight-bold mr-4"></label>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    @*<div class="text-center mt_bottom">
+        <h6 style="font-weight:normal">Haven't enrolled yet on a @System.Configuration.ConfigurationManager.AppSettings["Title"] plan?  <a class="text_primary font-weight-bold" href="@System.Configuration.ConfigurationManager.AppSettings["EnrollURL"]">Enroll Here</a> </h6>
+    </div>*@
+
+</div>

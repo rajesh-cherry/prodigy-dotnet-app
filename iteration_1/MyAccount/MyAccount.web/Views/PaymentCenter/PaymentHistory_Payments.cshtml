@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "PaymentHistory_Payments";
+    Layout = "~/Views/Shared/Header_Layout.cshtml";
+
+}
+
+<input type="hidden" id="paymentUIIFrameUrl" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["PaymentUIURL"]' />
+<input id="getbrandUrl" value="@System.Configuration.ConfigurationManager.AppSettings["BrandCode"]" style="display:none" />
+
+
+<div style="padding-bottom:60px;">
+
+    <div id="PaymentsPanelLoadingScreen">
+        <p class="text-muted"><i class="fa fa-fw fa-circle-o-notch fa-spin"></i> Loading your Payments.</p>
+        <br />
+    </div>
+
+    <div id="NoPaymentsPanel" style="display:none">
+        <h4 class="text-muted"><i class="fa fa-fw fa-info-circle"></i> No Payments to show.</h4>
+        <br />
+    </div>
+
+    <div id="PaymentsPanel" style="display:none">
+
+        <div class="table-responsive">
+            <table width="100%" class="table table-striped table-condensed" id="tblPayments">
+                <thead>
+                    <tr class="options" id="paymentsHeader"></tr>
+                </thead>
+                <tbody id="paymentstblBody"></tbody>
+            </table>
+        </div>
+
+        <div class="container" style="text-align:center">
+            <div id="paymentsPagination" class="my-pagination"></div>
+        </div>
+
+    </div>
+
+</div>
+
+<script id="paymentsHeaderTemplate" type="text/x-tmpl-mustache">
+    {{#RootTag}}
+    <th>
+        <button class="btn btn-link" id="PaymentColumn-{{name}}">
+            {{title}} <i class="fa fa-sort-{{sort}}"></i>
+        </button>
+    </th>
+    {{/RootTag}}
+</script>
+
+<script id="paymentsTemplate" type="text/x-tmpl-mustache">
+    {{#RootTag}}
+    <tr class="bill">
+
+        <td>
+            <div>
+                {{Date}}
+            </div>
+        </td>
+
+        <td>
+            <div>
+                {{AmountDisplayString}}
+            </div>
+        </td>
+
+        <td>
+            <div>
+                {{Type}}
+            </div>
+        </td>
+
+        <td>
+            <div>
+
+                {{^IsAutoPay}}
+                <input type="checkbox" disabled />
+                {{/IsAutoPay}}
+
+                {{#IsAutoPay}}
+                <input type="checkbox" disabled checked="checked" />
+                {{/IsAutoPay}}
+
+
+            </div>
+        </td>
+
+    </tr>
+
+    {{/RootTag}}
+</script>

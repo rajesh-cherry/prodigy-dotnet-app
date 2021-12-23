@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "MailSent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <script src="~/Scripts/Account/AccountFound.js"></script>
+}
+
+<div class="d-flex flex-column justify-content-center">
+    <div class="text-center">
+        <h5 class="font-weight-bold mt_70">ACCOUNT FOUND!</h5>
+
+        <h6 class="font-weight-normal login" style="display:none">
+            Congratulations we have found your account with the details provided.
+            Please continue to login.
+        </h6>
+        <h6 class="font-weight-normal register" style="display:none">
+            Congratulations we have found your account with the details provided.
+            Please continue to register.
+        </h6>
+    </div>
+    <input type="hidden" id="hnProdUrl" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["AccountPayURL"]' />
+    <input type="hidden" id="getbrandUrl" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["BrandCode"]' />
+
+    <form id="retriveform">
+        <div class="form-group text-center mt-5 mb-5">
+            <label for="usr" id="AccountNo">Account No: </label>
+
+        </div>
+
+        <div class="d-flex justify-content-center" style="display:none">
+            <button type="button" @*id="btnContinue"*@ class="btn btn_primary btnContinue pl-5 pr-5 login" style="display:none">Continue Login</button>
+        </div>
+        <div class="d-flex justify-content-center" style="display:none">
+            <button type="button" @*id="btnContinue"*@ class="btn btn_primary btnContinue pl-5 pr-5 register" style="display:none">Continue Registration</button>
+        </div>
+    </form>
+    <div class="loader" id="AjaxLoader" style="display: none;">
+    </div>
+    <!-- The Modal -->
+    <div class="modal" id="InvalidUserModal" style="background-color:#00000082; display: none;">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <h5 class="font-weight-bold mb-0">
+                        Account No - <span id="headerAccount"></span>  or
+                    </h5>
+                    <h5 class="font-weight-bold"> Email - <span id="headerEmail"></span></h5>
+                    <div class="gemsuser" id="GexaText" style="display:none">
+                        <p class="font_14 text_grey mt-2">
+                            The Gexa Energy App does not currently support your account, however all of the app features can be found in the Gexa online portal.
+                        </p>
+                        <p class="font_14 text_grey"> "Go to Gexa Energy Online Account Portal"</p>
+                    </div>
+                    <div class="nonresidential" id="FrontierText">
+                        <p class="font_14 text_grey mt-2">
+                            Our records indicate you are a Frontier Utilities Commercial customer. The Frontier Utilities App does not currently support Commercial customers. Please log in to the online portal to access your account.
+                        </p>
+                    </div>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer border-0" id="pwdDisabled1">
+                    <a class="font_14 text_primary font-weight-bold text-decoration-none" id="cancelModal" href="" data-dismiss="modal">Cancel</a>
+                    <button id="Gexa_NewId" class="btn btn_primary pl-5 pr-5 ml-3 gemsuser" onclick="location.href='https://myaccount.gexaenergy.com/'">Go to MyGexa</button>
+                    <button id="Frontier_NewId" class="btn btn_primary pl-5 pr-5 ml-3 nonresidential" onclick="location.href='https://myaccount.frontierutilities.com/'">Go to Frontier Utilities</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

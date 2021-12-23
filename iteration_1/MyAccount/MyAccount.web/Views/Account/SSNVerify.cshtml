@@ -1,0 +1,209 @@
+﻿
+@{
+    ViewBag.Title = "SSNVerify";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+ 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <style>
+        .ui-datepicker-trigger {
+            position: absolute !important;
+            top: 10px !important;
+            right: 10px !important;
+        }
+
+        .img_circle {
+            width: 61px;
+            height: 61px;
+            border-radius: 50%;
+            background-color: white;
+            z-index: 1;
+            margin-left: -5px;
+        }
+
+        .img_circle_select {
+            width: 61px;
+            height: 61px;
+            border-radius: 50%;
+            background-color: #36A629;
+            z-index: 1;
+            margin-left: -5px;
+        }
+
+        .rectange {
+            width: 30%;
+            height: 20px;
+            background-color: white;
+            margin-left: -5px;
+        }
+
+        .rectange_select {
+            width: 30%;
+            height: 20px;
+            background-color: #36A629;
+            margin-left: -5px;
+        }
+
+        /*DatePikcer Changes*/
+
+        .ui-datepicker {
+            font-family: 'Montserrat' !important;
+            box-shadow: 0px 3px 5px rgb(9 30 66 / 20%), 0px 0px 1px rgb(9 30 66 / 31%);
+            border-radius: 4px;
+            border: 0px !important;
+            width: auto !important;
+        }
+
+            .ui-datepicker th {
+                padding: .7em 0.5em !important;
+            }
+
+        .ui-datepicker-prev .ui-icon {
+            background-image: url('../../Content/images/chevron-left-large.png') !important;
+            background-position: 0px !important;
+            left: 34% !important
+        }
+
+        .ui-datepicker-next .ui-icon {
+            background-image: url('../../Content/images/chevron-right-large.png') !important;
+            background-position: 0px !important;
+            left: 41% !important
+        }
+
+        .ui-state-default {
+            border: 0px !important;
+            background-color: white !important;
+            text-align: center !important;
+            font-weight: 400 !important;
+            color: #828282 !important
+        }
+
+        .ui-datepicker th {
+            font-weight: 600 !important;
+            color: #6B778C !important;
+        }
+
+        .ui-state-active {
+            color: white !important;
+            background: #00335C !important;
+            border-radius: 3px !important;
+        }
+
+        .ui-widget-header {
+            border: 0px solid #dddddd !important;
+            background: white !important;
+            color: #00335C !important;
+            font-weight: bold;
+        }
+
+        .ui-datepicker-year {
+            border: 0px !important;
+            font-family: 'Montserrat' !important;
+            font-weight: 700 !important;
+            color: #00335C !important;
+        }
+
+        .ui-datepicker-month {
+            border: 0px !important;
+            font-family: 'Montserrat' !important;
+            font-weight: 700 !important;
+            color: #00335C !important;
+        }
+    </style>
+}
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Content/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/Scripts/Account/SSNVerify.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
+<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" rel="Stylesheet" type="text/css" />
+
+
+<script type="text/javascript">
+        var accountNo = '@ViewData["accountNo"].ToString()';
+</script>
+<input type="hidden" id="getbrandUrl" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["BrandCode"]' />
+<input type="hidden" id="hnProdUrl" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["AccountPayURL"]' />
+
+
+<div class="mt-5">
+
+    <div class="row mb-5 ">
+        <div class="col-xl-12 p-0">
+            <div class="d-flex flex-row justify-content-between align-content-center">
+                <p class="font-weight-normal font_14 mb-0 text-center">
+                    Verify Account <br />
+                    Number
+                </p>
+                <p class="font-weight-normal font_14">
+                    Verify
+                    ID
+                </p>
+                <p class="font-weight-normal font_14 mb-0">
+                    Create
+                    Password
+                </p>
+            </div>
+        </div>
+        <div class="col-xl-12 d-flex flex-row align-items-center mt-3">
+            <div class="d-flex justify-content-center align-items-center img_circle_select">
+                <img src="~/Content/images/verify_account.png" />
+            </div>
+            <div class="rectange_select"></div>
+            <div class="d-flex justify-content-center align-items-center img_circle">
+                <img src="~/Content/images/verify_id.png" />
+            </div>
+            <div class="rectange"></div>
+            <div class="d-flex justify-content-center align-items-center img_circle">
+                <img src="~/Content/images/create_password.png" />
+            </div>
+
+        </div>
+    </div>
+
+    <h5 class="text-center font-weight-bold mb-0 ">Register for @System.Web.Configuration.WebConfigurationManager.AppSettings["WelcomeTitle"] </h5>
+    <h6 class="mt-3 font-weight-normal text-center text_grey">Please verify your account </h6>
+    <h6 id="Headeraccountno" class="mt-3 font-weight-normal text-center text_grey">Account #:</h6>
+    <form class="form_style" id="SSNForm">
+
+        <div class="form-group" id="SSN_Valid">
+            <label for="usr">Social Security Number*</label>
+            <input placeholder="XXX-XX-Last 4 Digits of SSN" type="text" class="form-control" id="txtSSN" name="txtSSN">
+            <span id="txtSSN_error" style="display :none;color:red"></span>
+        </div>
+        <div class="form-group" id="Government_Valid" style="display:none;">
+            <label for="usr" id="label_GovId">Government ID*</label>
+            <input placeholder="" type="text" class="form-control" id="txtPassport" name="txtPassport" style="display:none" maxlength="9">
+            <input placeholder="" type="text" class="form-control" id="txtDriver" name="txtDriver" style="display:none" maxlength="13">
+            <input placeholder="" type="text" class="form-control" id="txtState" name="txtState" style="display:none" maxlength="15">
+            <input placeholder="" type="text" class="form-control" id="txtResident" name="txtResident" style="display:none" maxlength="13">
+            <input placeholder="" type="text" class="form-control" id="txtMilitary" name="txtMilitary" style="display:none" maxlength="10">
+            <input placeholder="" type="text" class="form-control" id="txtBirth" name="txtBirth" style="display:none" maxlength="11">
+            <input placeholder="" type="text" class="form-control" id="txtConsulate" name="txtConsulate" style="display:none" maxlength="10">
+            <input placeholder="" type="text" class="form-control" id="txtVisa" name="txtVisa" style="display:none" maxlength="9">
+            <span id="txtGovernment_error" style="display :none;color:red"></span>
+
+        </div>
+        <div class="form-group">
+            <label for="usr">Select Date of Birth*</label>
+            <div class="position-relative">
+                <input type="text" id="txtDOB" name="SelectedDate" readonly="readonly" class="form-control bg-white" placeholder="Select date" />
+
+                <span id="txtDOB_error" style="color:Red;"></span>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <span id="txtSSNGovID_error" style="display :none;color:red"></span>
+        </div>
+        <div class="d-flex justify-content-center mb-5">
+            <button type="button" id="btnNxt" class="btn btn_primary_outline btnNxt mt_90 w-50 ">Continue</button>
+        </div>
+    </form>
+    <div class="loader" id="AjaxLoader" style="display: none;">
+    </div>
+</div>
+

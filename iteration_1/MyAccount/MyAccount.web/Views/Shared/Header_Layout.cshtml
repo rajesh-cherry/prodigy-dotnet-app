@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="~/Content/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Content/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    @System.Web.Optimization.Styles.Render("~/Layoutcss")
+    <script>
+        $(document).ready(function () {
+
+            var hnProdUrl = $("#hnProdUrl").val();
+
+            $("#show").click(function () {
+                $("#notify").toggle();
+
+            });
+
+            $('#btnLogout').click(function () {
+                sessionStorage.clear()
+                window.location = hnProdUrl + '/'
+            });
+
+            $("#btnSettings").click(function () {
+                window.location = hnProdUrl + '/ProfileSettings/ProfileSettings';
+            });
+
+            $("#btnUsage").click(function () {
+                window.location = hnProdUrl + '/Usage/UsageHistory';
+            });
+
+            $("#btnMyBill").click(function () {
+                window.location = hnProdUrl + '/Bill/ViewMyBill';
+            });
+
+            $("#btnUsage").click(function () {
+                window.location = hnProdUrl + '/Usage/History';
+            });
+
+            $("#btnEoDasboard").click(function () {
+                window.location = hnProdUrl + '/ProfileSettings/ProfileSettings';
+            });
+
+            $("#btnHome").click(function () {
+                window.location = hnProdUrl + '/Dashboard';
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <input type="hidden" id="hnProdUrl" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["AccountPayURL"]' />
+    <div class="container-fluid head_layout">
+        <div class="row header_style">
+            <div class="col-xl-2 col-lg-2">
+                <a href="/Header/Index">
+                    <img src="~/@System.Configuration.ConfigurationManager.AppSettings["headerlogo"]" />
+                </a>
+            </div>
+            <div class="col-xl-7 col-lg-6">
+                <nav class="navbar navbar-expand-md bg-none navbar-light">
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-start" id="collapsibleNavbar">
+                        <ul class="navbar-nav nav-pills">
+                            <li class="nav-item pl-3 pr-3">
+                                <a class="nav-link" href="#" id="btnHome">Home</a>
+                            </li>
+                            <li class="nav-item pl-3 pr-3">
+                                <a class="nav-link" href="#" id="btnEoDasboard">EO Dashboard</a>
+                            </li>
+                            <li class="nav-item pl-3 pr-3">
+                                <a class="nav-link" href="#" id="btnMyBill">My Bill</a>
+                            </li>
+                            <li class="nav-item pl-3 pr-3">
+                                <a class="nav-link" href="#" id="btnUsage">Usage </a>
+                            </li>
+                            <li class="nav-item pl-3 pr-3">
+                                <a class="nav-link active" href="#" id="btnSettings">Settings</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-12 text-center d-flex flex-row align-items-center justify-content-around">
+                <a id="show">
+                    <i class="far fa-bell font_22"></i>
+                </a>
+                <img src="~/Content/images/Header_FAQ.png" />
+                <div class="dropdown d-inline-block">
+                    <button type="button" class="btn btn_focus dropdown-toggle border-0" data-toggle="dropdown">
+                        <img src="~/Content/images/Account_Icon.png" />&nbsp; 4546726353
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="#">Link 1</a>
+                        <a class="dropdown-item" href="#">Link 2</a>
+                        <a class="dropdown-item" href="#">Link 3</a>
+                    </div>
+                </div>
+                <button type="button" class=" border-0 btn btn_focus">
+                    <img src="~/Content/images/logout.png" id="btnLogout" />
+                </button>
+                @*<img src="~/Content/images/logout.png" />*@
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4 notify_bg" id="notify" style="display: none;position: absolute;z-index: 1;right: 0px;">
+        <div>
+            <h3 class="text-left d-inline-block">Notifications</h3>
+            <a href="/NotifyPreferences/NotifyPreferences">
+                <img src="~/Content/images/settings.png" class="float-right" />
+            </a>
+        </div>
+        <div class="light_notify_bg">
+            <label class="notify_circle"></label>
+            <label class="notify_text">Lorem ipsum dolor sit amet, consectetur  elit.</label>
+        </div>
+        <div class="light_notify_bg">
+            <label class="notify_circle"></label>
+            <label class="notify_text">Lorem ipsum dolor sit amet, consectetur  elit.</label>
+        </div>
+        <div class="light_notify_bg">
+            <label class="notify_circle"></label>
+            <label class="notify_text">Lorem ipsum dolor sit amet, consectetur  elit.</label>
+        </div>
+        <div class="dark_notify_bg">
+            <label class="notify_circle"></label>
+            <label class="notify_text">Lorem ipsum dolor sit amet, consectetur  elit.</label>
+        </div>
+        <div class="light_notify_bg">
+            <label class="notify_circle"></label>
+            <label class="notify_text">Lorem ipsum dolor sit amet, consectetur  elit.</label>
+        </div>
+        <div class="dark_notify_bg">
+            <label class="notify_circle"></label>
+            <label class="notify_text">Lorem ipsum dolor sit amet, consectetur  elit.</label>
+        </div>
+        <div class="light_notify_bg">
+            <label class="notify_circle"></label>
+            <label class="notify_text">Lorem ipsum dolor sit amet, consectetur  elit.</label>
+        </div>
+
+        <h6 class="load_text">Load More</h6>
+
+    </div>
+
+    <div class="col-xl-12" style="background-color: rgba(0, 50, 92, 0.05);">
+        @RenderBody()
+    </div>
+
+    <div class="container-fluid" style="background-color:#FAFBFC">
+        <div class="row pt-4 pb-4">
+            <div class="col-xl-6 col-lg-6 col-12 mt-2 terms_style align-self-center">
+                <p class="font_14 m-0" style=" color: #00335C;">Terms      Privacy Policy       Legal Notices</p>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-12 mt-2 email_style align-self-center">
+                <p class="m-0 font_14">Copyright 2021 Gexa Energy, LP All rights reserved. PUCT Certificate #10027</p>
+            </div>
+            @*<div class="col-xl-6 col-lg-6 col-12 mt-2 mb-2 rights_style align-self-center">
+                    <p class="m-0 d-inline">© Gexa Energy, LP All rights reserved</p>
+                    <p class="m-0 d-inline ml-2">PUCT CERTIFICATE #10027</p>
+                </div>*@
+        </div>
+    </div>
+</body>
+</html>

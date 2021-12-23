@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyAccount.web", "MyAccount.web\MyAccount.web.csproj", "{060E5AF8-F6A3-4A4D-BF3E-5E4C10F33AC8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{060E5AF8-F6A3-4A4D-BF3E-5E4C10F33AC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{060E5AF8-F6A3-4A4D-BF3E-5E4C10F33AC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{060E5AF8-F6A3-4A4D-BF3E-5E4C10F33AC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{060E5AF8-F6A3-4A4D-BF3E-5E4C10F33AC8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {873350D4-2DDC-42F4-8123-6472FF423C0B}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://fs2.frontier1.local:8080/tfs/myaccount
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = MyAccount.web\\MyAccount.web.csproj
+		SccProjectName1 = MyAccount.web
+		SccLocalPath1 = MyAccount.web
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "PaymentOptions_AutoPay";
+    Layout = "~/Views/Shared/Header_Layout.cshtml";
+
+}
+
+<input type="hidden" id="paymentUIIFrameUrl" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["PaymentUIURL"]' />
+<input id="getbrandUrl" value="@System.Configuration.ConfigurationManager.AppSettings["BrandCode"]" style="display:none" />
+
+<div style="padding-bottom:60px;">
+
+    <div id="PaymentOptionsAutoPayLoadingPanel">
+        <p class="text-muted"><i class="fa fa-fw fa-circle-o-notch fa-spin"></i>Loading...</p>
+        <br />
+    </div>
+
+    <div id="PaymentOptionsAutoPayErrorPanel" style="display:none">
+        <div class="alert alert-danger"><strong>Could not load your details. Please try later.</div>
+    </div>
+
+    <input id="FirstNameHidden" type="hidden" asp-for="FirstName" />
+    <input id="LastNameHidden" type="hidden" asp-for="LastName" />
+    <input id="DeviceTypeHidden" type="hidden" asp-for="DeviceType" />
+
+
+    <div id="PaymentOptionsAutoPayPanel" class="paymentOptionsAutoPay">
+        <iframe id="PaymentOptionsAutoPayIFrame" frameBorder="0" scrolling="no" class="embed-responsive-item" allowfullscreen></iframe>
+
+    </div>
+
+</div>
+
+<script src="~/Scripts/PaymentCenter/PaymentOptions.js"></script>

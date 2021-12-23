@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "AddFund";
+    Layout = "~/Views/Shared/Header_Layout.cshtml";
+
+    <title>Add Fund</title>
+}
+
+<div class="container pl-0 pr-0 padding_tb Add_fund">
+    <div class="row pt-3">
+        <div class="col-xl-12">
+            <i class="fas fa-chevron-left font_20"></i>
+            <h4 class="ml-3 font-weight-normal d-inline">Add Fund</h4>
+        </div>
+
+        <div class="col-xl-12 mt-4">
+            <div class="add_fund_bg p-4 text-white border_radius_8 d-flex flex-row justify-content-between align-items-center">
+                <h4 class="font-weight-bold mb-0">Account Balance</h4>
+                <h1 class="font-weight-bold mb-0"> $5.80</h1>
+            </div>
+        </div>
+
+        <div class="col-xl-12 text-right mt-5">
+            <p class="font_14 from_account p-3">
+                From :
+                <span class="font_16">    <img src="~/Content/images/payment_visa.png" />  **** **** **** 1234</span> &nbsp;
+                <i class="fas fa-chevron-right font_16"></i>
+            </p>
+        </div>
+
+        <div class="col-xl-12 d-flex justify-content-center">
+            <div class="form-group mt-5">
+                <label for="usr">Enter Amount or Choose</label>
+                <div class="position-relative">
+                    <input placeholder="Account Number" type="text" class="form-control pl_50" id="" maxlength="8">
+                    <i class="fas fa-dollar-sign text_primary"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-12 mt_40">
+            <div class="d-flex flex-row align-items-center">
+                <span class="font_14">$0</span>
+                <input type="range" min="1" max="100" value="50" class="slider ml-3 mr-3">
+                <span class="font_14">$3000</span>
+            </div>
+        </div>
+
+        <div class="col-xl-12 mt_40">
+            <h4 class="font-weight-bold">1 days</h4>
+            <h6 class="font-weight-normal mb-0">
+                Your estimated balance for 1 day of service = 200 kWh.
+            </h6>
+            <h6 class="font-weight-normal">
+                Your current daily avg usage is $4/day.
+            </h6>
+            <button class="btn btn_primary pl-5 pr-5 mt_40 float-right">Add Funds</button>
+        </div>
+
+    </div>
+</div>

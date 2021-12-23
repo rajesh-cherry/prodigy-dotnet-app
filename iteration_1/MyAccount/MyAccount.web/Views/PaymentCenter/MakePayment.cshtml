@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "MakePayment";
+    Layout = "~/Views/Shared/Header_Layout.cshtml";
+
+}
+
+<input type="hidden" id="paymentUIIFrameUrl" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["PaymentUIURL"]' />
+<input id="getbrandUrl" value="@System.Configuration.ConfigurationManager.AppSettings["BrandCode"]" style="display:none" />
+<input type="hidden" id="baseURL" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["baseURL"]' />
+
+
+<div style="padding-bottom:60px;">
+    <div id="MakePaymentLoadingPanel">
+        <p class="text-muted"><i class="fa fa-fw fa-circle-o-notch fa-spin"></i> Loading your payment details.</p>
+        <br />
+    </div>
+
+    <div id="MakePaymentErrorPanel" style="display:none;">
+        <div class="alert alert-danger"><strong>Could not load your details. Please try later.</div>
+    </div>
+
+    <input id="FirstNameHidden" type="hidden" asp-for="FirstName" />
+    <input id="LastNameHidden" type="hidden" asp-for="LastName" />
+    <input id="DeviceTypeHidden" type="hidden" asp-for="DeviceType" />
+
+
+    <div id="MakePaymentPanel" class="makepayments overflow-auto" style="min-height:100%">
+        @*<div class="embed-responsive embed-responsive-custom">
+                <iframe id="MakePaymentIFrame" style="height:825px;" scrolling="no" class="embed-responsive-item" src="" allowfullscreen></iframe>
+            </div>*@
+        <iframe id="MakePaymentIFrame" frameBorder="0" scrolling="no" class="embed-responsive-item" allowfullscreen></iframe>
+
+    </div>
+
+</div>
+
+
+<script src="~/Scripts/PaymentCenter/MakePayment.js"></script>

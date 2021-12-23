@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "PaymentOptions";
+    Layout = "~/Views/Shared/Header_Layout.cshtml";
+
+}
+
+<input type="hidden" id="paymentUIIFrameUrl" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["PaymentUIURL"]' />
+<input id="getbrandUrl" value="@System.Configuration.ConfigurationManager.AppSettings["BrandCode"]" style="display:none" />
+
+
+
+
+
+<div id="PaymentOptionsPanel" class="paymentOptions" style="padding-bottom:100px;">
+
+    <input id="FirstNameHidden" type="hidden" asp-for="FirstName" />
+    <input id="LastNameHidden" type="hidden" asp-for="LastName" />
+
+    <section class="section-container">
+
+        <div>
+            <h2>Payment Options</h2>
+            <div class="row payment-options mt-0 pt-0">
+                <div class="col-md-4">
+                    <a class="payment-option current" href="#">
+                        <h4 id="AutoPayHeaderLabel1" class="pay_ment"></h4>
+                        <div class="payment-option-icon"><i class="fa fa-4x fa-clock-o"></i></div>
+                        <h4 id="AutoPayHeaderLabel2" class="payment-option-name pay_ment"></h4>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a class="payment-option" href="#">
+                        <h4 class="pay_ment">Pay the same amount every month</h4>
+                        <div class="payment-option-icon"><i class="fa fa-4x fa-usd"></i></div>
+                        <h4 class="payment-option-name pay_ment">Budget Billing</h4>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a class="payment-option" href="#">
+                        <h4 class="payment-option-caption pay_ment">Can't pay right now? <br /> We've got you covered.</h4>
+                        <div class="payment-option-icon"><i class="fa fa-4x fa-handshake-o"></i></div>
+                        <h4 class="payment-option-name pay_ment">Payment Extension</h4>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>

@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "PaymentOptions_BudgetBilling";
+    Layout = "~/Views/Shared/Header_Layout.cshtml";
+
+}
+
+<input type="hidden" id="paymentUIIFrameUrl" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["PaymentUIURL"]' />
+<input id="getbrandUrl" value="@System.Configuration.ConfigurationManager.AppSettings["BrandCode"]" style="display:none" />
+
+
+<div class="row">
+    <div class="col-xl-12 col-12 text-center" style="margin-bottom: 80px">
+        <img src="~/images/global/Coming_soon.png" />
+        <h3 class="text-muted">Coming Soon</h3>
+        <small>We will notify you once the feature is ready.</small>
+    </div>
+</div> 

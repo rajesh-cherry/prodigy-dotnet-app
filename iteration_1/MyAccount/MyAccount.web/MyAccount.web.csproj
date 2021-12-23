@@ -1,0 +1,533 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Target Name="CopyRoslynFiles" AfterTargets="AfterBuild" Condition="!$(Disable_CopyWebApplication) And '$(OutDir)' != '$(OutputPath)'">
+    <ItemGroup>
+      <RoslynFiles Include="$(CscToolPath)\*" />
+    </ItemGroup>
+    <MakeDir Directories="$(WebProjectOutputDir)\bin\roslyn" />
+    <Copy SourceFiles="@(RoslynFiles)" DestinationFolder="$(WebProjectOutputDir)\bin\roslyn" SkipUnchangedFiles="true" Retries="$(CopyRetryCount)" RetryDelayMilliseconds="$(CopyRetryDelayMilliseconds)" />
+  </Target>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{060E5AF8-F6A3-4A4D-BF3E-5E4C10F33AC8}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MyAccount.web</RootNamespace>
+    <AssemblyName>MyAccount.web</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44358</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BillController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\PaymentCenterController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\UsageController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Global.cs" />
+    <Compile Include="Utils\Helper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\lib\bootstrap\bootstrap-grid.css" />
+    <Content Include="Content\lib\bootstrap\bootstrap-grid.min.css" />
+    <Content Include="Content\lib\bootstrap\bootstrap-grid.rtl.css" />
+    <Content Include="Content\lib\bootstrap\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\lib\bootstrap\bootstrap-reboot.css" />
+    <Content Include="Content\lib\bootstrap\bootstrap-reboot.min.css" />
+    <Content Include="Content\lib\bootstrap\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\lib\bootstrap\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\lib\bootstrap\bootstrap-theme.css" />
+    <Content Include="Content\lib\bootstrap\bootstrap-theme.min.css" />
+    <Content Include="Content\lib\bootstrap\bootstrap-utilities.css" />
+    <Content Include="Content\lib\bootstrap\bootstrap-utilities.min.css" />
+    <Content Include="Content\lib\bootstrap\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\lib\bootstrap\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\lib\bootstrap\bootstrap.css" />
+    <Content Include="Content\lib\bootstrap\bootstrap.min.css" />
+    <Content Include="Content\css\Frontier-Layout.css" />
+    <Content Include="Content\css\Gexa-Layout.css" />
+    <Content Include="Content\images\Account.png" />
+    <Content Include="Content\images\Account_check.png" />
+    <Content Include="Content\images\Account_Icon.png" />
+    <Content Include="Content\images\AceLogo.png" />
+    <Content Include="Content\images\Address.png" />
+    <Content Include="Content\images\app screen.png" />
+    <Content Include="Content\images\appStore.png" />
+    <Content Include="Content\images\app_screen.png" />
+    <Content Include="Content\images\app_screen_1.png" />
+    <Content Include="Content\images\app_screen_2.png" />
+    <Content Include="Content\images\app_screen_3.png" />
+    <Content Include="Content\images\app_screen_4.png" />
+    <Content Include="Content\images\app_screen_5.png" />
+    <Content Include="Content\images\autopay.png" />
+    <Content Include="Content\images\background.PNG" />
+    <Content Include="Content\images\background_1.png" />
+    <Content Include="Content\images\Badge.png" />
+    <Content Include="Content\images\banner.png" />
+    <Content Include="Content\images\Bill.png" />
+    <Content Include="Content\images\bolt_on.png" />
+    <Content Include="Content\images\bolt_on_big.png" />
+    <Content Include="Content\images\Budget_billing.png" />
+    <Content Include="Content\images\Budge_big.png" />
+    <Content Include="Content\images\Budge_fade.png" />
+    <Content Include="Content\images\Bulb.png" />
+    <Content Include="Content\images\calendar_icon.png" />
+    <Content Include="Content\images\Call.png" />
+    <Content Include="Content\images\carbon_bg.png" />
+    <Content Include="Content\images\cc_check.png" />
+    <Content Include="Content\images\cc_pen.png" />
+    <Content Include="Content\images\Change_pw.png" />
+    <Content Include="Content\images\chatbot.png" />
+    <Content Include="Content\images\check_Banner.png" />
+    <Content Include="Content\images\chevron-left-large.png" />
+    <Content Include="Content\images\chevron-right-large.png" />
+    <Content Include="Content\images\contact_banner.png" />
+    <Content Include="Content\images\create_password.png" />
+    <Content Include="Content\images\credit-card.png" />
+    <Content Include="Content\images\Credit_card.png" />
+    <Content Include="Content\images\credit_card_1.png" />
+    <Content Include="Content\images\Dashboard.png" />
+    <Content Include="Content\images\Dashboard_bg.png" />
+    <Content Include="Content\images\Dashboard_carousal.png" />
+    <Content Include="Content\images\Default.png" />
+    <Content Include="Content\images\Devices.png" />
+    <Content Include="Content\images\Devices_1.png" />
+    <Content Include="Content\images\Devices_2.png" />
+    <Content Include="Content\images\Devices_3.png" />
+    <Content Include="Content\images\Devices_4.png" />
+    <Content Include="Content\images\Discover.png" />
+    <Content Include="Content\images\DollarGeneral.png" />
+    <Content Include="Content\images\dots.png" />
+    <Content Include="Content\images\earnings.png" />
+    <Content Include="Content\images\edit.png" />
+    <Content Include="Content\images\email.png" />
+    <Content Include="Content\images\EnergyBill.png" />
+    <Content Include="Content\images\Error_Icon.png" />
+    <Content Include="Content\images\E_check.png" />
+    <Content Include="Content\images\facebook.png" />
+    <Content Include="Content\images\Faq.png" />
+    <Content Include="Content\images\FbLogoMail.png" />
+    <Content Include="Content\images\fb_icon.png" />
+    <Content Include="Content\images\Frontier logo.png" />
+    <Content Include="Content\images\frontier-background.png" />
+    <Content Include="Content\images\frontierDownloadLogo.png" />
+    <Content Include="Content\images\FrontierMailLogo.png" />
+    <Content Include="Content\images\Frontier_Logo.png" />
+    <Content Include="Content\images\FROT-logo.png" />
+    <Content Include="Content\images\gexa-background.PNG" />
+    <Content Include="Content\images\Gexa-logo.png" />
+    <Content Include="Content\images\GexaMailLogo.png" />
+    <Content Include="Content\images\Gexa_icon.png" />
+    <Content Include="Content\images\Gousian Layer.png" />
+    <Content Include="Content\images\Gousian Layer_1.png" />
+    <Content Include="Content\images\Gousian Layer_2.png" />
+    <Content Include="Content\images\Gousian Layer_3.png" />
+    <Content Include="Content\images\Gousian Layer_4.png" />
+    <Content Include="Content\images\Gousian Layer_5.png" />
+    <Content Include="Content\images\GousianLayer.png" />
+    <Content Include="Content\images\Group 2672.png" />
+    <Content Include="Content\images\Group 4.png" />
+    <Content Include="Content\images\Hand_symbol.png" />
+    <Content Include="Content\images\Header_FAQ.png" />
+    <Content Include="Content\images\Header_logo.png" />
+    <Content Include="Content\images\Icon.png" />
+    <Content Include="Content\images\iconfinder_check-circle-outline_326568.png" />
+    <Content Include="Content\images\info.png" />
+    <Content Include="Content\images\loading-image.gif" />
+    <Content Include="Content\images\location_cmp.png" />
+    <Content Include="Content\images\location_cmp_1.png" />
+    <Content Include="Content\images\location_direction.png" />
+    <Content Include="Content\images\location_map.png" />
+    <Content Include="Content\images\location_phone.png" />
+    <Content Include="Content\images\location_proc.png" />
+    <Content Include="Content\images\location_time.png" />
+    <Content Include="Content\images\loc_ace.png" />
+    <Content Include="Content\images\loc_doller.png" />
+    <Content Include="Content\images\loc_family.png" />
+    <Content Include="Content\images\loc_map.png" />
+    <Content Include="Content\images\loc_moneygram.png" />
+    <Content Include="Content\images\Logo.png" />
+    <Content Include="Content\images\logout.png" />
+    <Content Include="Content\images\Mail.png" />
+    <Content Include="Content\images\manage_comminications.png" />
+    <Content Include="Content\images\Map.png" />
+    <Content Include="Content\images\meter.png" />
+    <Content Include="Content\images\Modal_Call.png" />
+    <Content Include="Content\images\Modal_email.png" />
+    <Content Include="Content\images\Moving_center.png" />
+    <Content Include="Content\images\mybill_autopay.png" />
+    <Content Include="Content\images\mybill_autopay_bg.png" />
+    <Content Include="Content\images\mybill_autopay_icon.png" />
+    <Content Include="Content\images\MyBill_image.png" />
+    <Content Include="Content\images\mybill_reading.png" />
+    <Content Include="Content\images\notification.png" />
+    <Content Include="Content\images\notify.png" />
+    <Content Include="Content\images\paper-plane 2.png" />
+    <Content Include="Content\images\Paperless.png" />
+    <Content Include="Content\images\password_black.png" />
+    <Content Include="Content\images\password_green.png" />
+    <Content Include="Content\images\password_red.png" />
+    <Content Include="Content\images\Payment.png" />
+    <Content Include="Content\images\payment_autopay.PNG" />
+    <Content Include="Content\images\Payment_card_icon.png" />
+    <Content Include="Content\images\payment_check.png" />
+    <Content Include="Content\images\payment_copy.png" />
+    <Content Include="Content\images\payment_discover.png" />
+    <Content Include="Content\images\Payment_faq.png" />
+    <Content Include="Content\images\Payment_history.png" />
+    <Content Include="Content\images\Payment_locations.png" />
+    <Content Include="Content\images\payment_master.png" />
+    <Content Include="Content\images\payment_notify.png" />
+    <Content Include="Content\images\Payment_pci.png" />
+    <Content Include="Content\images\payment_pdf.png" />
+    <Content Include="Content\images\payment_visa.png" />
+    <Content Include="Content\images\pdf.png" />
+    <Content Include="Content\images\pen.png" />
+    <Content Include="Content\images\Pen_1.png" />
+    <Content Include="Content\images\Personal.png" />
+    <Content Include="Content\images\Personal_1.png" />
+    <Content Include="Content\images\phone.png" />
+    <Content Include="Content\images\Phone_book.png" />
+    <Content Include="Content\images\PlansAndServicesBanner.PNG" />
+    <Content Include="Content\images\playStore.png" />
+    <Content Include="Content\images\prepay_faq.png" />
+    <Content Include="Content\images\prepay_history.png" />
+    <Content Include="Content\images\prepay_locations.png" />
+    <Content Include="Content\images\Quick_Tips_1.png" />
+    <Content Include="Content\images\Quick_Tips_2.png" />
+    <Content Include="Content\images\Quick_Tips_3.png" />
+    <Content Include="Content\images\Referral.png" />
+    <Content Include="Content\images\referral_gift.png" />
+    <Content Include="Content\images\renew_banner.png" />
+    <Content Include="Content\images\renew_electric.png" />
+    <Content Include="Content\images\renew_plan.png" />
+    <Content Include="Content\images\renew_rooftop.png" />
+    <Content Include="Content\images\Saving_tips.png" />
+    <Content Include="Content\images\settings.png" />
+    <Content Include="Content\images\Settings_1.png" />
+    <Content Include="Content\images\small_banner.PNG" />
+    <Content Include="Content\images\snow.png" />
+    <Content Include="Content\images\step_1.png" />
+    <Content Include="Content\images\step_11.png" />
+    <Content Include="Content\images\step_12.png" />
+    <Content Include="Content\images\step_13.png" />
+    <Content Include="Content\images\step_2.png" />
+    <Content Include="Content\images\step_3.png" />
+    <Content Include="Content\images\step_4.png" />
+    <Content Include="Content\images\Success.png" />
+    <Content Include="Content\images\Successfull.png" />
+    <Content Include="Content\images\Tips_1.png" />
+    <Content Include="Content\images\Tips_2.png" />
+    <Content Include="Content\images\Tips_3.png" />
+    <Content Include="Content\images\TNMP.png" />
+    <Content Include="Content\images\Trophy.png" />
+    <Content Include="Content\images\trophy_1.png" />
+    <Content Include="Content\images\twitter.png" />
+    <Content Include="Content\images\TwitterLogoMail.png" />
+    <Content Include="Content\images\twitter_icon.png" />
+    <Content Include="Content\images\Vector.png" />
+    <Content Include="Content\images\VectorForgot.png" />
+    <Content Include="Content\images\verify_account.png" />
+    <Content Include="Content\images\verify_id.png" />
+    <Content Include="Content\lib\bootstrap\bootstrap.rtl.css" />
+    <Content Include="Content\lib\bootstrap\bootstrap.rtl.min.css" />
+    <Content Include="Content\lib\fontawesome\all.css" />
+    <Content Include="Content\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
+    <Content Include="Content\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Content\lib\jquery-validation-unobtrusive\LICENSE.txt" />
+    <Content Include="Content\lib\jquery-validation\dist\additional-methods.js" />
+    <Content Include="Content\lib\jquery-validation\dist\additional-methods.min.js" />
+    <Content Include="Content\lib\jquery-validation\dist\jquery.validate.js" />
+    <Content Include="Content\lib\jquery-validation\dist\jquery.validate.min.js" />
+    <Content Include="Content\lib\jquery\dist\jquery.js" />
+    <Content Include="Content\lib\jquery\dist\jquery.min.js" />
+    <Content Include="Content\lib\jquery\LICENSE.txt" />
+    <Content Include="Content\lib\montserrat_font\montserrat.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\css\Site.css" />
+    <Content Include="Scripts\Account\AccountFound.js" />
+    <Content Include="Scripts\Account\CreatePassword.js" />
+    <Content Include="Scripts\Account\ForgotPassword.js" />
+    <Content Include="Scripts\Account\Login.js" />
+    <Content Include="Scripts\Account\Register.js" />
+    <Content Include="Scripts\Account\ResetPassword.js" />
+    <Content Include="Scripts\Account\SSNVerify.js" />
+    <Content Include="Scripts\Account\VerifyOtp.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\lib\bootstrap\bootstrap-grid.css.map" />
+    <Content Include="Content\lib\bootstrap\bootstrap-grid.min.css.map" />
+    <Content Include="Content\lib\bootstrap\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\lib\bootstrap\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\lib\bootstrap\bootstrap-reboot.css.map" />
+    <Content Include="Content\lib\bootstrap\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\lib\bootstrap\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\lib\bootstrap\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\lib\bootstrap\bootstrap-utilities.css.map" />
+    <Content Include="Content\lib\bootstrap\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\lib\bootstrap\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\lib\bootstrap\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\lib\bootstrap\bootstrap.rtl.css.map" />
+    <Content Include="Content\lib\bootstrap\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\lib\jquery\dist\jquery.min.map" />
+    <Content Include="Content\lib\jquery-validation\LICENSE.md" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Account\EmailNotReceived.js" />
+    <Content Include="Scripts\Account\ForgotEmail.js" />
+    <Content Include="Scripts\Account\Index.js" />
+    <Content Include="Scripts\Account\Retrieve.js" />
+    <Content Include="Scripts\PaymentCenter\MakePayment.js" />
+    <Content Include="Scripts\PaymentCenter\PaymentAccount.js" />
+    <Content Include="Scripts\PaymentCenter\PaymentDetails.js" />
+    <Content Include="Scripts\PaymentCenter\PaymentHistory.js" />
+    <Content Include="Scripts\PaymentCenter\PaymentLocation.js" />
+    <Content Include="Scripts\PaymentCenter\PaymentOptions.js" />
+    <Content Include="Scripts\PaymentCenter\Payment_Center.js" />
+    <Content Include="Scripts\Account\RegistrationSuccessful.js" />
+    <Content Include="Scripts\Usage\EnergySavingTips.js" />
+    <Content Include="Scripts\Usage\EnergySavingTipsDetails.js" />
+    <Content Include="Scripts\Usage\History.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\EmailNotReceived.cshtml" />
+    <Content Include="Views\Account\ForgotEmail.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Retrieve.cshtml" />
+    <Content Include="Views\Shared\Header_Layout.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\PaymentCenter\AddFund.cshtml" />
+    <Content Include="Views\PaymentCenter\Index.cshtml" />
+    <Content Include="Views\PaymentCenter\MakePayment.cshtml" />
+    <Content Include="Views\PaymentCenter\MobileAddNewCard.cshtml" />
+    <Content Include="Views\PaymentCenter\MobilePaymentAccount.cshtml" />
+    <Content Include="Views\PaymentCenter\PaymentAccount.cshtml" />
+    <Content Include="Views\PaymentCenter\PaymentAutopay.cshtml" />
+    <Content Include="Views\PaymentCenter\PaymentDetails.cshtml" />
+    <Content Include="Views\PaymentCenter\PaymentFaq.cshtml" />
+    <Content Include="Views\PaymentCenter\PaymentHistory.cshtml" />
+    <Content Include="Views\PaymentCenter\PaymentHistory_Invoices.cshtml" />
+    <Content Include="Views\PaymentCenter\PaymentHistory_Payments.cshtml" />
+    <Content Include="Views\PaymentCenter\PaymentLocation.cshtml" />
+    <Content Include="Views\PaymentCenter\PaymentMethod.cshtml" />
+    <Content Include="Views\PaymentCenter\PaymentMethods.cshtml" />
+    <Content Include="Views\PaymentCenter\PaymentOptions.cshtml" />
+    <Content Include="Views\PaymentCenter\PaymentOptions_AutoPay.cshtml" />
+    <Content Include="Views\PaymentCenter\PaymentOptions_BudgetBilling.cshtml" />
+    <Content Include="Views\PaymentCenter\PaymentOptions_PaymentExtension.cshtml" />
+    <Content Include="Views\PaymentCenter\Payment_Center.cshtml" />
+    <Content Include="Views\Payment\Autopay.cshtml" />
+    <Content Include="Views\Payment\Faq.cshtml" />
+    <Content Include="Views\Payment\History.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\SSNVerify.cshtml" />
+    <Content Include="Views\Account\CreatePassword.cshtml" />
+    <Content Include="Views\Account\RegistrationSuccessful.cshtml" />
+    <Content Include="Views\Account\MailSent.cshtml" />
+    <Content Include="Views\Account\VerifyOtp.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\AccountFound.cshtml" />
+    <Content Include="Views\Bill\ViewMyBill.cshtml" />
+    <Content Include="Views\Bill\History.cshtml" />
+    <Content Include="Views\Usage\History.cshtml" />
+    <Content Include="Views\Usage\EnergySavingTips.cshtml" />
+    <Content Include="Views\Usage\EnergySavingTipsDetails.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\lib\bootstrap\bootstrap.min.css.map" />
+    <Content Include="Content\lib\bootstrap\bootstrap.css.map" />
+    <Content Include="Content\lib\bootstrap\bootstrap-theme.min.css.map" />
+    <Content Include="Content\lib\bootstrap\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>52779</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44358/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

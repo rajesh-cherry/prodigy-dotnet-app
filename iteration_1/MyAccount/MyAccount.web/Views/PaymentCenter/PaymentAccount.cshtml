@@ -1,0 +1,232 @@
+﻿
+@{
+    ViewBag.Title = "PaymentAccount";
+    Layout = "~/Views/Shared/Header_Layout.cshtml";
+
+    <title>Payment Account</title>
+
+    <script>
+        $(document).ready(function () {
+            $("#cc_pop_open").click(function () {
+                $("#cc_popup").toggle();
+            });
+            $("#close").click(function () {
+                $("#price_notify").hide();
+            });
+        });
+    </script>
+}
+<input type="hidden" id="paymentUIIFrameUrl" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["PaymentUIURL"]' />
+<input id="getbrandUrl" value="@System.Configuration.ConfigurationManager.AppSettings["BrandCode"]" style="display:none" />
+<input type="hidden" id="baseURL" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["baseURL"]' />
+
+<div class="container pl-0 pr-0 padding_tb Payment">
+    <div class="row pt-3">
+        <div class="col-xl-12 col-md-12 col-lg-7">
+            <i class='fas fa-arrow-left font_20'></i>
+            <h4 class="ml-3 font-weight-normal d-inline">Payment Account</h4>
+        </div>
+
+        <div class="col-xl-12 text-right">
+            <button class="mt_50 btn btn_primary pl-5 pr-5" data-toggle="modal" data-target="#newCardModal">Add New Card</button>
+        </div>
+
+        <div class="col-xl-4 col-lg-4 col-md-6 mt-3 mb-3">
+            <div class="p-3 d-inline-block gousian_card gousicanCard w-100">
+                <div class="d-flex flex-row justify-content-between align-items-center">
+                    <img src="~/Content/images/Discover.png" class="d-inline" />
+                    <div class="d-flex flex-row align-items-center">
+                        <img src="~/Content/images/Success.png" />
+                        <p class="mb-0 ml-3 mr-3 font_14" style="color: #BBBBBB">Default</p>
+                        <i class="fas fa-ellipsis-v text-white" id="cc_pop_open"></i>
+                    </div>
+                </div>
+                <p class="font_14 text-white mt-5">Jon Doe</p>
+                <div class="d-flex flex-row justify-content-between">
+                    <p class="font_14 text-white font-weight-bold">
+                        Ending in <br />
+                        2563
+                    </p>
+                    <p class="font_14 text-white font-weight-bold text-right">
+                        Valid thru <br />
+                        02/2022
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-white border_radius_8 p-3 Credit_card_edit" id="cc_popup">
+                <p class="font_14 text_secondary"><i class="far fa-trash-alt"></i> &nbsp;Delete</p>
+                <p class="font_14 text_secondary">
+                    <img src="~/Content/images/cc_check.png" />  &nbsp;Make Default
+                </p>
+                <p class="font_14 text_secondary mb-0">
+                    <img src="~/Content/images/cc_pen.png" /> &nbsp;Edit Card Info
+                </p>
+            </div>
+        </div>
+
+        <div class="col-xl-4 col-lg-4 col-md-6 mt-3 mb-3">
+            <div class="p-3 d-inline-block gousian_card_1 gousicanCard w-100">
+                <div class="d-flex flex-row justify-content-between align-items-center pt-1">
+                    <img src="~/Content/images/Discover.png" class="d-inline" />
+                    <i class="fas fa-ellipsis-v text-white"></i>
+                </div>
+                <p class="font_14 text-white mt-5">Jon Doe</p>
+                <div class="d-flex flex-row justify-content-between">
+                    <p class="font_14 text-white font-weight-bold">
+                        Ending in <br />
+                        2563
+                    </p>
+                    <p class="font_14 text-white font-weight-bold text-right">
+                        Valid thru <br />
+                        02/2022
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4 col-lg-4 col-md-6 mt-3 mb-3">
+            <div class="p-3 d-inline-block gousian_card_2 gousicanCard w-100">
+                <div class="d-flex flex-row justify-content-between align-items-center pt-1">
+                    <img src="~/Content/images/Discover.png" class="d-inline" />
+                    <i class="fas fa-ellipsis-v text-white"></i>
+                </div>
+                <p class="font_14 text-white mt-5">Jon Doe</p>
+                <div class="d-flex flex-row justify-content-between">
+                    <p class="font_14 text-white font-weight-bold">
+                        Ending in <br />
+                        2563
+                    </p>
+                    <p class="font_14 text-white font-weight-bold text-right">
+                        Valid thru <br />
+                        02/2022
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4 col-lg-4 col-md-6 mt-3 mb-3">
+            <div class="p-3 d-inline-block gousian_card_3 gousicanCard w-100">
+                <div class="d-flex flex-row justify-content-between align-items-center pt-1">
+                    <img src="~/Content/images/Discover.png" class="d-inline" />
+                    <i class="fas fa-ellipsis-v text-white"></i>
+                </div>
+                <p class="font_14 text-white mt-5">Jon Doe</p>
+                <div class="d-flex flex-row justify-content-between">
+                    <p class="font_14 text-white font-weight-bold">
+                        Ending in <br />
+                        2563
+                    </p>
+                    <p class="font_14 text-white font-weight-bold text-right">
+                        Valid thru <br />
+                        02/2022
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4 col-lg-4 col-md-6 mt-3 mb-3">
+            <div class="p-3 d-inline-block gousian_card_4 gousicanCard w-100">
+                <div class="d-flex flex-row justify-content-between align-items-center pt-1">
+                    <img src="~/Content/images/Discover.png" class="d-inline" />
+                    <i class="fas fa-ellipsis-v text-white"></i>
+                </div>
+                <p class="font_14 text-white mt-5">Jon Doe</p>
+                <div class="d-flex flex-row justify-content-between">
+                    <p class="font_14 text-white font-weight-bold">
+                        Ending in <br />
+                        2563
+                    </p>
+                    <p class="font_14 text-white font-weight-bold text-right">
+                        Valid thru <br />
+                        02/2022
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4 col-lg-4 col-md-6 mt-3 mb-3">
+            <div class="p-3 d-inline-block gousian_card_5 gousicanCard w-100">
+                <div class="d-flex flex-row justify-content-between align-items-center pt-1">
+                    <img src="~/Content/images/Discover.png" class="d-inline" />
+                    <i class="fas fa-ellipsis-v text-white"></i>
+                </div>
+                <p class="font_14 text-white mt-5">Jon Doe</p>
+                <div class="d-flex flex-row justify-content-between">
+                    <p class="font_14 text-white font-weight-bold">
+                        Ending in <br />
+                        2563
+                    </p>
+                    <p class="font_14 text-white font-weight-bold text-right">
+                        Valid thru <br />
+                        02/2022
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-12 mt_80 mb-5 d-flex justify-content-center align-items-center flex-column">
+            <img src="~/Content/images/Credit_card.png" />
+            <h4 class="mt-4">No cards added yet</h4>
+            <h6 class="font-weight-normal mt-4 text_grey">
+                It looks like you have not added any cards. <br>
+                Add your cards here and make your frontier bills and payments easy.
+            </h6>
+            <button class="mt_50 btn btn_primary pl-5 pr-5" data-toggle="modal" data-target="#newCardModal">Add New Card</button>
+        </div>
+        <div id="PaymentAccountsPanel" class="paymentAccounts" style="min-height:100%;display:none">
+            @*<div class="embed-responsive embed-responsive-custom">
+                <iframe id="PaymentAccountsIFrame" scrolling="no" class="embed-responsive-item" allowfullscreen></iframe>
+            </div>*@
+            <iframe id="PaymentAccountsIFrame" frameBorder="0" scrolling="no" class="embed-responsive-item" allowfullscreen></iframe>
+        </div>
+
+    </div>
+</div>
+<div id="newCardModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header border border-bottom-0 pl-4 pr-4 pb-0">
+                <h4 class="modal-title font-weight-normal">Add New Credit Card</h4>
+            </div>
+            <div class="modal-body pl-4 pl-4 pt-0">
+                <div>
+                    <div>
+                        <p class="font_16 d-inline">Please enter the following details to add your card with frontier</p>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label class="font_14 text_grey" for="usr">Name On Card</label>
+                        <input placeholder="Your Name" type="text" class="form-control" id="txtUser" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label class="font_14 text_grey" for="usr">Card Number</label>
+                        <input placeholder="Card Number" type="text" class="form-control" id="txtUser" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label class="font_14 text_grey" for="usr">Expiration</label>
+                        <input placeholder="mm/yy" type="date" class="form-control" id="txtUser" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label class="font_14 text_grey" for="usr">CVV</label>
+                        <input placeholder="Enter CVV Number" type="text" class="form-control" id="txtUser" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label class="font_14 text_grey" for="usr">Zip Code</label>
+                        <input placeholder="Enter Zip Code" type="text" class="form-control" id="txtUser" name="username">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border border-top-0">
+                <h6 class="font-weight-bold mr-5 text_primary" data-dismiss="modal">Cancel</h6>
+                <button type="button" class="font-weight-bold btn btn_primary_outline  pl-5 pr-5" data-dismiss="modal">Add</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<script src="~/Scripts/PaymentCenter/PaymentAccount.js"></script>

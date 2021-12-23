@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My Account</title>
+
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    @*<script src="~/Scripts/jquery-3.6.0.min.js"></script>*@
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    @*<script src="~/Content/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>*@
+    <script src="~/Content/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+
+</head>
+<body>
+    @System.Web.Optimization.Styles.Render("~/Layoutcss")
+    <input type="hidden" id="getbrandUrl" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["BrandCode"]' />
+
+    <div class="container-fluid row m-0 p-0 layout" style="background-color: #FAFBFC">
+        <div class="col-xl-7 d-xl-block d-none bg_color" style="background-image: url('@System.Configuration.ConfigurationManager.AppSettings["backgroundimg"]');background-size:cover">
+
+            <div class="row">
+                <div class="col-xl-12 text-center">
+                    <div id="demo" class="carousel slide" data-ride="carousel">
+
+                        <!-- Indicators -->
+                        <ul class="carousel-indicators">
+                            <li data-target="#demo" data-slide-to="0" class="active"></li>
+                            <li data-target="#demo" data-slide-to="1"></li>
+                            <li data-target="#demo" data-slide-to="2"></li>
+                            <li data-target="#demo" data-slide-to="3"></li>
+                            <li data-target="#demo" data-slide-to="4"></li>
+                        </ul>
+
+                        <!-- The slideshow -->
+                        <div class="carousel-inner text-white">
+                            <div class="carousel-item active">
+                                <div class="mb-4">
+                                    <h1 class="mt-4 font-weight-normal text-center text_primary_layout">
+                                        Welcome  <br /> to MyAccount
+                                    </h1>
+                                    <h4 class="text-center mt-3 pl-3 pr-3 font-weight-normal quote_text">
+                                        Take a quick tour of some of the features you will find in the <br />
+                                        "MyAccount" App
+                                    </h4>
+                                </div>
+                                <img src="~/@System.Configuration.ConfigurationManager.AppSettings["devicesimg"]" alt="My Account" class="image_100">
+                            </div>
+                            <div class="carousel-item">
+                                <div class="mb-4">
+                                    <h1 class="mt-4 font-weight-normal text-center text_primary_layout">
+                                        View and Pay
+                                        <br /> Your Bill
+                                    </h1>
+                                    <h4 class="text-center mt-3 pl-3 pr-3 font-weight-normal quote_text">
+                                        You have everything you need <br /> right at your fingertips.
+                                    </h4>
+                                </div>
+                                <img src="~/@System.Configuration.ConfigurationManager.AppSettings["devices_1img"]" alt="Pay bills" class="image_100">
+                            </div>
+                            <div class="carousel-item">
+                                <div class="mb-4">
+                                    <h1 class="mt-4 font-weight-normal text-center text_primary_layout">
+                                        Check Your Energy <br />
+                                        Insights
+                                    </h1>
+                                    <h4 class="text-center mt-3 pl-3 pr-3 font-weight-normal quote_text">
+                                        See your current usage and <br /> estimate your future usage.
+                                    </h4>
+                                </div>
+                                <img src="~/@System.Configuration.ConfigurationManager.AppSettings["devices_2img"]" alt="Check Your Energy Insights" class="image_100">
+                            </div>
+                            <div class="carousel-item">
+                                <div class="mb-4">
+                                    <h1 class="mt-4 font-weight-normal text-center text_primary_layout">
+                                        My Current Plan
+                                    </h1>
+                                    <h4 class="text-center mt-3 pl-5 pr-5 font-weight-normal quote_text">
+                                        Access plan documents. Plus, <br /> review or renew your current <br /> plans and services.
+                                    </h4>
+                                </div>
+                                <img src="~/@System.Configuration.ConfigurationManager.AppSettings["devices_3img"]" alt="My Current Plan" class="image_100">
+                            </div>
+                            <div class="carousel-item">
+                                <div class="mb-4">
+                                    <h1 class="mt-4 font-weight-normal text-center text_primary_layout">
+                                        Moving  <br /> Center
+                                    </h1>
+                                    <h4 class="text-center mt-3 pl-3 pr-3 font-weight-normal quote_text">
+                                        Easily set up service at your <br />new address.
+                                    </h4>
+                                </div>
+                                <img src="~/@System.Configuration.ConfigurationManager.AppSettings["devices_4img"]" alt=" Moving Center" class="image_100">
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class=" p-3 offset-xl-1 col-xl-10 mt-5 mb-4 d-flex justify-content-between align-items-center apps_bg_styles">
+
+                    <p class="text-left font_16 mb-0 font-weight-normal text-white">For Best Experience <br /> Download @System.Configuration.ConfigurationManager.AppSettings["mobileapplabel"] </p>
+
+                    <div class="">
+                        <img src="~/Content/images/playStore.png" />
+                        <img src="~/Content/images/appStore.png" class="ml-4" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-5 offset-xl-0 offset-lg-2 col-lg-8 col-md-8 offset-md-2  padding_style_right">
+            <div class="text-center" style="margin-top:72px">
+                <img src="~/@System.Configuration.ConfigurationManager.AppSettings["MainLogo"]" />
+            </div>
+            @RenderBody()
+
+        </div>
+        <div class="col-lg-12 col-xl-12 col-12 d-xl-none p-0 pl-lg-5 pr-lg-5 pl-md-5 pr-md-5" style="background-color: #FAFBFC" id="downloadModal">
+            <div class="bg-white p-3 d-flex justify-content-between align-items-start mt-4">
+                <img src="~/@System.Configuration.ConfigurationManager.AppSettings["downloadLogo"]" />
+                <div class="d-lg-flex justify-content-lg-between align-items-lg-start d-md-flex justify-content-md-around align-items-md-start">
+                    <label class="font_14 w-lg-50 ml-3">
+                        For Best Experience Download
+                        @System.Configuration.ConfigurationManager.AppSettings["Title"] MyAccount Mobile App
+                    </label>
+                    <button class="btn btn_primary pl-5 pr-5 ml-lg-5 mr-md-3 ml-3">Install App</button>
+                </div>
+                <i class="fas fa-times" id="closePopup"></i>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row" style="background-color: #FAFBFC;height:80px">
+            <div class="col-xl-6 col-lg-6 col-12 mt-2 terms_style align-self-center">
+                @if (@System.Web.Configuration.WebConfigurationManager.AppSettings["BrandCode"] == "GEXAIX")
+                {
+                    <p class="m-0 font_14">
+                        <a class="text-decoration-none terms_text" href="@System.Configuration.ConfigurationManager.AppSettings["Terms"]">Terms</a>  &nbsp; <a class="terms_text text-decoration-none" href="@System.Configuration.ConfigurationManager.AppSettings["Privacy"]"> Privacy Policy </a> &nbsp; <a class="terms_text text-decoration-none legal" id="Legalnotice" href=" @System.Configuration.ConfigurationManager.AppSettings["Legalnotice"]">Legal Notices </a>
+
+                    </p>
+
+                }
+                else
+                {
+                    <p class="m-0 font_14">
+                        <a class="text-decoration-none terms_text" href="@System.Configuration.ConfigurationManager.AppSettings["Terms"]">Terms</a>  &nbsp; <a class="terms_text text-decoration-none" href="@System.Configuration.ConfigurationManager.AppSettings["Privacy"]"> Privacy Policy </a>
+
+                    </p>
+
+                }
+            </div>
+            <div class="col-xl-6 col-lg-6 col-12 mt-2 mb-2 rights_style align-self-center text-center text-xl-right  text-lg-right text-md-center">
+                <p class="m-0 d-inline font_14">Copyright 2021 @System.Configuration.ConfigurationManager.AppSettings["Title"], LP All rights reserved. PUCT Certificate #10027</p>
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

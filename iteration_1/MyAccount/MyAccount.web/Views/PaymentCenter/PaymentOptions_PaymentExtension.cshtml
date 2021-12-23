@@ -1,0 +1,125 @@
+﻿@{
+    ViewBag.Title = "PaymentOptions_PaymentExtension";
+    Layout = "~/Views/Shared/Header_Layout.cshtml";
+
+}
+
+<input type="hidden" id="paymentUIIFrameUrl" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["PaymentUIURL"]' />
+<input id="getbrandUrl" value="@System.Configuration.ConfigurationManager.AppSettings["BrandCode"]" style="display:none" />
+
+
+
+<input id="FirstNameHidden" type="hidden" asp-for="FirstName" />
+<input id="LastNameHidden" type="hidden" asp-for="LastName" />
+
+<!--new Design-->
+
+<div class="row" id="DisablePAPanel" style="display:none">
+    <div class="col-xl-12 col-12 text-center" style="margin-bottom: 80px">
+        <div class="col-xl-12 col-12 text-center" style="margin-bottom: 80px">
+            <img src="~/images/global/Coming_soon.png" />
+            <h3 class="text-muted">Coming Soon</h3>
+            <small>We will notify you once the feature is ready.</small>
+        </div>
+    </div>
+</div>
+
+<section class="section-container-highlight mb-5 pb-5" id="EnablePAPanel" style="display:none">
+
+    <div class="row">
+
+        <div class="col-sm-12">
+
+            <a asp-controller="Payments" asp-action="PaymentOptions_AutoPay" class="d-block d-sm-none btn btn-sm btn-light btn-block">
+                <i class="fa fa-arrow-left"></i> Back to Payment Options
+            </a>
+
+            <br class="d-block d-sm-none" />
+
+            <h3>Payment Extension Details</h3>
+
+        </div>
+
+    </div>
+
+    <hr />
+
+    <div class="row">
+
+        <div class="col-sm-12">
+
+            <div id="PaymentOptionsPaymentExtensionLoadingPanel">
+                <p class="text-muted"><i class="fa fa-fw fa-circle-o-notch fa-spin"></i>Loading Payment Extension Details</p>
+                <br />
+            </div>
+
+            <div>
+                <!-- Covid Modal -->
+                <div class="modal modal fade" tabindex="-1" role="dialog" id="covidPrompt">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">COVID Relief Payment Extension</h4>
+                                @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <p class="text-left">
+                                    Are you unable to pay
+                                    due to unemployment or hardship and plan to apply for the COVID Relief Program?
+                                </p>
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" id="covidYes" data-dismiss="modal" class="btn btn-myAccountPrimary">Yes</button>
+                                <button type="button" id="covidNo" class="btn btn-myAccountPrimary" data-dismiss="modal">NO</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <p style="color: #2eb134;">
+                    If you have been economically affected by the Covid-19 event and qualify for unemployment
+                    benefits from the Texas Workforce Commission, and you are unable to pay your electric bill,
+                    you can register for assistance from the Covid-19 Electricity Relief Program online at <a href="https://www.txcovid19erp.org" target="_blank"><u> https://www.txcovid19erp.org</u></a>. If you have questions or need assistance enrolling, you can also contact the program administrator at <a href="mailto:TX_COVID-19ELECTRICITY_RELIEF@SOLIXINC.COM" target="_blank"><u> TX_COVID-19ELECTRICITY_RELIEF@SOLIXINC.COM</u></a> or 866-454-8387. SNAP or Medicaid recipients should already be enrolled in this program and need not submit a request.
+                </p>
+
+                <div class="alert alert-warning">
+
+                    <div class="row">
+
+                        <div class="col-sm-12">
+
+                            <p class="pull-left" id="PaymentExtensionScript"></p>
+                        </div>
+                    </div>
+
+                </div>
+                <div style="float: right;display:none" id="PaymentExtensionEnrollPanel">
+
+                    <button class="btn btn-myAccountPrimary" id="PaymentExtensionEnrollBtn">
+
+                        <span style="display:none" id="PaymentExtensionEnrollProcessingBtn" class="fa fa-spin fa-circle-o-notch"></span>
+                        REQUEST PAYMENT EXTENSION
+                    </button>
+
+                    <button class="btn btn-link" id="PaymentExtensionCancelBtn">CANCEL</button>
+
+                </div>
+                <div style="float: right;display:none" id="PaymentExtensionPaymentPanel">
+
+                    <button class="btn btn-success" id="MakePaymentUsingCardtBtn">MAKE PAYMENT Using Card</button>
+                    @*<button class="btn btn-success" id="MakePaymentUsingCashtBtn">MAKE PAYMENT Using Cash</button>*@
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

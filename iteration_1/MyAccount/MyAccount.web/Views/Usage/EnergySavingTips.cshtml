@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "EnergySavingTips";
+    Layout = "~/Views/Shared/Header_Layout.cshtml";
+    
+
+    <style>
+        .quick_tips_1 {
+            background-image: url('../Content/images/Quick_Tips_1.png');
+            height: 370px;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .quick_tips_2 {
+            background-image: url('../../Content/images/Quick_Tips_2.png');
+            height: 130px;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .quick_tips_3 {
+            background-image: url('../../Content/images/Quick_Tips_3.png');
+            height: 130px;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+    </style>
+}
+<input id="getbrandUrl" value='@System.Configuration.ConfigurationManager.AppSettings["BrandCode"]' style="display:none" />
+<input type="hidden" id="hnProdUrl" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["AccountPayURL"]' />
+
+<div class="container padding_tb">
+    <div class="row">
+        <div class="col-xl-12">
+            <h4 class="font-weight-normal">Energy Saving Tips  </h4>
+        </div>
+        <div class="col-xl-12 mt-3">
+            <div class="bg-white p-3">
+                <h5 class="font-weight-bold">Quick Tips</h5>
+                <div class="d-flex overflow-auto mt-3">
+                    <div class="col-xl-8 quick_tips_1 p-4 d-flex align-items-end">
+                        <h5 class="font-weight-bold text-white">KEEP YOUR HOME COOL ENOUGH FOR YOUR PETS WITHOUT WASTING ENERGY</h5>
+                    </div>
+                    <div class="col-xl-8 quick_tips_1 p-4 ml-4 d-flex align-items-end">
+                        <h5 class="font-weight-bold text-white">KEEP YOUR HOME COOL ENOUGH FOR YOUR PETS WITHOUT WASTING ENERGY</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-12 mt-3 mb-3">
+                        <h5 class="font-weight-bold">Energy Tips  </h5>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6">
+                        <img src="~/Content/images/Quick_Tips_3.png" class="border_radius_8" />
+                        <h6 class="font-weight-bold mt-2 mb-2">6 SMART SEASONAL ENERGY-SAVING TIPS</h6>
+                        <p class="font_14 text_grey pr-2">Fall is here! And it’s time to embrace the things that define the season. Formany, that includes football, family outings-and holiday cleaning.</p>
+                        <ol class="font_14 pl-3">
+                            <li>
+                                Vacuum refrigerator coils
+                            </li>
+                            <li>
+                                Replace A/C filters
+                            </li>
+                            <li>
+                                Dust electronics, ventsand light bulbs
+                            </li>
+                            <li>
+                                Install a programmable thermostat
+                            </li>
+                            <li>
+                                Seal all cracks
+                            </li>
+                        </ol>
+                        <a class="font_16 text-decoration-none text_primary font-weight-bold" href="/Usage/EnergySavingTipsDetails">Read Now</a>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6">
+                        <img src="~/Content/images/Quick_Tips_2.png" class="border_radius_8" />
+                        <h6 class="font-weight-bold mt-2 mb-2">5 ENERGY SAVINGS HACK FOR YOUR LAUNDRY ROOMS</h6>
+                        <p class="font_14 text_grey pr-2">Fall is here! And it’s time to embrace the things that define the season. Formany, that includes football, family outings-and holiday cleaning.</p>
+                        <ol class="font_14 pl-3">
+                            <li>
+                                Vacuum refrigerator coils
+                            </li>
+                            <li>
+                                Replace A/C filters
+                            </li>
+                            <li>
+                                Dust electronics, ventsand light bulbs
+                            </li>
+                            <li>
+                                Install a programmable thermostat
+                            </li>
+                            <li>
+                                Seal all cracks
+                            </li>
+                        </ol>
+                        <a class="font_16 text-decoration-none text_primary font-weight-bold" href="/Usage/EnergySavingTipsDetails">Read Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

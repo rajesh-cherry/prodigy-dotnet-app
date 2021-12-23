@@ -1,0 +1,984 @@
+﻿
+@{
+    ViewBag.Title = "History";
+    Layout = "~/Views/Shared/Header_Layout.cshtml";
+
+    <style>
+        .bg_primary_plan {
+            background: rgba(0, 51, 92, 0.04);
+            border-radius: 4px
+        }
+
+        .tips_bg_1 {
+            background-image: url('../Content/images/Tips_1.png');
+            height: 130px;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .tips_bg_2 {
+            background-image: url('../Content/images/Tips_2.png');
+            height: 130px;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .tips_bg_3 {
+            background-image: url('../Content/images/Tips_3.png');
+            height: 130px;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+    </style>
+
+}
+<input id="getbrandUrl" value='@System.Configuration.ConfigurationManager.AppSettings["BrandCode"]' style="display:none" />
+<input type="hidden" id="hnProdUrl" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["AccountPayURL"]' />
+
+<div class="container padding_tb Usage p-0">
+    <div class="row pt-3">
+        <div class="col-xl-6 col-md-6 col-lg-6 mt-3">
+            <ul class="nav nav-tabs yearly_tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" id="yearly" href="#yearlymenu">Yearly</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" id="monthly" href="#monthlymenu">Monthly</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" id="weekly" href="#weeklymenu">Weekly</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" id="daily" href="#dailymenu">Daily</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="tab-content">
+        <div id="yearlymenu" class="tab-pane fade  pb-3">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bg-white p-3">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="row align-items-center">
+                                    @*<h4 class="font-weight-normal d-inline-block">Energy Usage &nbsp; <i class="far fa-question-circle"></i></h4>*@
+                                    <div class="col-xl-4 col-lg-4 text-xl-left text-lg-left text-center mb-xl-0 mb-lg-0 mb-3">
+                                        <h4 class="font-weight-normal d-inline-block">Energy Usage &nbsp; <i class="far fa-question-circle"></i></h4>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-6 text-center mb-xl-0 mb-lg-0 mb-md-0 mb-3">
+                                        <i class="fas fa-chevron-left" id="yearlyleftarrow"></i>
+
+                                        <span class="font_14 font-weight-bold ml-3 mr-3">
+                                            <label class="usage_dot mb-0"></label> &nbsp;
+                                            <span id="yearlydate"></span>
+                                        </span>
+                                        <i class="fas fa-chevron-right" id="yearlyrightarrow"></i>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-6 pl-lg-0 d-flex flex-row align-items-center justify-content-end">
+
+                                        <ul class="nav chart_tabs nav-tabs ml-3" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link chart active" data-toggle="tab" href="#yearlychart"><i class="far fa-chart-bar"></i></a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link chart" data-toggle="tab" href="#yearlytable"><i class="fas fa-list-ul"></i></a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+
+
+
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div id="yearlychart" class="container tab-pane active mt-4 mb-3">
+                                        <div class="chartContainer" id="yearlychartContainer" style="height: 400px; width: 100%;"></div>
+                                    </div>
+                                    <div id="yearlytable" class="container tab-pane fade">
+                                        <div class="table-responsive mt-4 mb-4">
+                                            <table class="table table-borderless" id="yearlist">
+                                                <thead class="text-white bg_primary">
+                                                    <tr>
+                                                        <th>Month</th>
+                                                        <th>kWh</th>
+                                                        <th>Avg. Temp F</th>
+                                                        <th>Cost $</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="table-striped">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-xl-4 col-lg-4 col-md-4">
+                                <div class="bg_primary_plan p-3" id="pyborder_highlight">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h6 class="font-weight-bold text_grey">Previous Year</h6>
+                                            <p class="font_12 font-weight-normal text_grey" id="previousyear"></p>
+                                        </div>
+
+                                        <h3 class="font-weight-bold text_primary">
+                                            734<span class="font-weight-normal font_18">kWh</span>
+                                            <i class="fas fa-caret-down font_16 text_success"></i> <span class="font_12 text_grey font-weight-normal">7.5%</span>
+                                        </h3>
+                                    </div>
+                                    <h1 style="border: 1px dashed #00335C"></h1>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <p class="font_14 font-weight-normal text_grey">Weekly Usage</p>
+                                        <p class="font_14 text_primary font-weight-bold">249 kWh</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="font_14 font-weight-normal text_grey">Daily Usage (kWh/day)</p>
+                                        <p class="font_14 text_primary font-weight-bold">46 kWh</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4">
+                                <div class="bg_primary_plan p-3 border_highlight" id="cyborder_highlight">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h6 class="font-weight-bold text_grey">Current Year</h6>
+                                            <p class="font_12 font-weight-normal text_grey" id="currentyear"></p>
+                                        </div>
+
+                                        <h3 class="font-weight-bold text_primary">
+                                            734<span class="font-weight-normal font_18">kWh</span>
+                                            <i class="fas fa-caret-down font_16 text_success"></i> <span class="font_12 text_grey font-weight-normal">7.5%</span>
+                                        </h3>
+                                    </div>
+                                    <h1 style="border: 1px dashed #00335C"></h1>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <p class="font_14 font-weight-normal text_grey">Weekly Usage</p>
+                                        <p class="font_14 text_primary font-weight-bold">249 kWh</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="font_14 font-weight-normal text_grey">Daily Usage (kWh/day)</p>
+                                        <p class="font_14 text_primary font-weight-bold">46 kWh</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4">
+                                <div class="bg_primary_plan p-3">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h6 class="font-weight-bold text_grey">Projected Year</h6>
+                                            <p class="font_12 font-weight-normal text_grey">Apr 1 - Apr 30, 2021</p>
+                                        </div>
+
+                                        <h3 class="font-weight-bold text_primary">
+                                            734<span class="font-weight-normal font_18">kWh</span>
+                                            <i class="fas fa-caret-down font_16 text_success"></i> <span class="font_12 text_grey font-weight-normal">7.5%</span>
+                                        </h3>
+                                    </div>
+                                    <h1 style="border: 1px dashed #00335C"></h1>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <p class="font_14 font-weight-normal text_grey">Weekly Usage</p>
+                                        <p class="font_14 text_primary font-weight-bold">249 kWh</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="font_14 font-weight-normal text_grey">Daily Usage (kWh/day)</p>
+                                        <p class="font_14 text_primary font-weight-bold">46 kWh</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12">
+                    <div class="bg_primary p-3" style="border-radius: 0px 0px 8px 8px">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-5">
+                                <h4 class="text-white font-weight-normal">Billing Amount</h4>
+                                <p class="font_14 text-white">May 1 - May 31, 2021 bill cycle</p>
+                            </div>
+                            <div class="d-flex justify-content-end align-items-center col-xl-6 col-lg-6 col-md-7">
+                                <h1 class="font-weight-normal text-white"><span class="font_12 text_success"><i class="fas fa-arrow-down"></i> 12% </span>$98.55</h1>
+                                <button class="btn btn_primary_outline pl-5 pr-5 ml-3">Pay Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="monthlymenu" class="tab-pane active ">
+            <div class="row pl-2 pr-2">
+                <div class="col-xl-12">
+                    <div class="bg-white p-3">
+                        <div class="row">
+
+                            <div class="col-xl-12">
+                                <div class="row align-items-center">
+                                    @*<h4 class="font-weight-normal d-inline-block">Energy Usage &nbsp; <i class="far fa-question-circle"></i></h4>*@
+                                    <div class="col-xl-4 col-lg-4 text-xl-left text-lg-left text-center mb-xl-0 mb-lg-0 mb-3">
+                                        <h4 class="font-weight-normal d-inline-block">Energy Usage &nbsp; <i class="far fa-question-circle"></i></h4>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-6 text-center mb-xl-0 mb-lg-0 mb-md-0 mb-3">
+                                        <i class="fas fa-chevron-left" id="monthlyleftarrow"></i>
+
+                                        <span class="font_14 font-weight-bold ml-3 mr-3">
+
+                                            <label class="usage_dot mb-0"></label> &nbsp;
+                                            <span id="monthlydate"></span>
+                                        </span>
+                                        <i class="fas fa-chevron-right" id="monthlyrightarrow"></i>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-6 pl-lg-0 d-flex flex-row align-items-center justify-content-end">
+
+                                        <div class="form-check">
+                                            <label class="form-check-label main font_14 text_grey">
+                                                <input id="billingmonths" type="checkbox" class="form-check-input" value="">Billing Month
+                                                <span class="geekmark"></span>
+                                            </label>
+                                        </div>
+                                        <ul class="nav chart_tabs nav-tabs ml-3" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link chart active" data-toggle="tab" href="#monthlychart"><i class="far fa-chart-bar"></i></a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link chart" data-toggle="tab" href="#monthlytable"><i class="fas fa-list-ul"></i></a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link chart" data-toggle="tab" href="#calender"><i class="fas fa-calendar-alt"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+
+
+
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div id="monthlychart" class="container tab-pane active mt-4 mb-3">
+                                        <div class="chartContainer" id="monthlychartContainer" style="height: 400px; width: 100%;"></div>
+                                    </div>
+                                    <div id="monthlytable" class="container tab-pane fade">
+                                        <div class="table-responsive mt-4 mb-4">
+                                            <table class="table table-borderless" id="monthlist">
+                                                <thead class="text-white bg_primary">
+                                                    <tr>
+                                                        <th>Date</th>
+                                                        <th>kWh</th>
+                                                        <th>Avg. Temp F</th>
+                                                        <th>Cost $</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="table-striped">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div id="calender" class="container tab-pane fade">
+                                        <div class="table-responsive pt-4 pb-4">
+                                            <table class="table table-borderless text-center" cellspacing="0" cellpadding="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>S</th>
+                                                        <th>M</th>
+                                                        <th>T</th>
+                                                        <th>W</th>
+                                                        <th>T</th>
+                                                        <th>F</th>
+                                                        <th>S</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="calender_th">
+                                                    <tr>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th class="th_green">
+                                                            <h5 class="font-weight-bold">1 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                        <th class="th_green">
+                                                            <h5 class="font-weight-bold">2 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="th_green">
+                                                            <h5 class="font-weight-bold">3 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                        <th class="th_red">
+                                                            <h5 class="font-weight-bold">4 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                        <th class="th_yellow">
+                                                            <h5 class="font-weight-bold">5 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                        <th class="th_green">
+                                                            <h5 class="font-weight-bold">6 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                        <th class="th_yellow">
+                                                            <h5 class="font-weight-bold">7 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                        <th class="th_green">
+                                                            <h5 class="font-weight-bold">8 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                        <th class="th_red">
+                                                            <h5 class="font-weight-bold">9 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="th_yellow">
+                                                            <h5 class="font-weight-bold">10 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                        <th class="th_green">
+                                                            <h5 class="font-weight-bold">11 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                        <th class="th_yellow">
+                                                            <h5 class="font-weight-bold">12 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                        <th class="th_green">
+                                                            <h5 class="font-weight-bold">13 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                        <th class="th_green">
+                                                            <h5 class="font-weight-bold">14 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                        <th class="th_green">
+                                                            <h5 class="font-weight-bold">15 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                        <th class="th_red">
+                                                            <h5 class="font-weight-bold">16 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="th_yellow">
+                                                            <h5 class="font-weight-bold">17 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                        <th class="th_green">
+                                                            <h5 class="font-weight-bold">18 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                        <th class="th_red">
+                                                            <h5 class="font-weight-bold">19 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                        <th class="th_green">
+                                                            <h5 class="font-weight-bold">20 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                        <th class="th_yellow">
+                                                            <h5 class="font-weight-bold">21 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                        <th class="th_yellow">
+                                                            <h5 class="font-weight-bold">22 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                        <th class="th_red">
+                                                            <h5 class="font-weight-bold">23 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="th_green">
+                                                            <h5 class="font-weight-bold">24 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                        <th class="th_red">
+                                                            <h5 class="font-weight-bold">25 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                        <th class="th_green">
+                                                            <h5 class="font-weight-bold">26 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                        <th class="th_red">
+                                                            <h5 class="font-weight-bold">27 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                        <th class="th_green">
+                                                            <h5 class="font-weight-bold">28 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                        <th class="th_yellow">
+                                                            <h5 class="font-weight-bold">29 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                        <th class="th_green">
+                                                            <h5 class="font-weight-bold">30 Apr</h5>
+                                                            <div class="font-weight-normal mt-3">
+                                                                <h6 class="float-left">73°</h6>
+                                                                <h6 class="float-right">11 <i class="fas fa-bolt font_10"></i></h6>
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                            <div class="d-flex flex-row justify-content-center align-items-center">
+                                                <div class="down_charge pl-2 pr-2 mr-3">
+                                                    <i class="fas fa-arrow-down"></i> &nbsp;
+                                                    <i class="fas fa-bolt font_10"></i>
+                                                </div>
+                                                <div class="avg_charge pl-2 pr-2 mr-3">
+                                                    <label class="font_12 mb-0">Avg</label>  &nbsp;
+                                                    <i class="fas fa-bolt font_10"></i>
+                                                </div>
+                                                <div class="up_charge pl-2 pr-2">
+                                                    <i class="fas fa-arrow-up"></i>  &nbsp;
+                                                    <i class="fas fa-bolt font_10"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-xl-4 col-lg-4 col-md-4">
+                                <div class="bg_primary_plan p-3" id="pmborder_highlight">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h6 class="font-weight-bold text_grey">Previous Month</h6>
+                                            <p class="font_12 font-weight-normal text_grey" id="previousmonth"></p>
+                                        </div>
+
+                                        <h3 class="font-weight-bold text_primary">
+                                            734<span class="font-weight-normal font_18">kWh</span>
+                                            <i class="fas fa-caret-down font_16 text_success"></i> <span class="font_12 text_grey font-weight-normal">7.5%</span>
+                                        </h3>
+                                    </div>
+                                    <h1 style="border: 1px dashed #00335C"></h1>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <p class="font_14 font-weight-normal text_grey">Weekly Usage</p>
+                                        <p class="font_14 text_primary font-weight-bold">249 kWh</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="font_14 font-weight-normal text_grey">Daily Usage (kWh/day)</p>
+                                        <p class="font_14 text_primary font-weight-bold">46 kWh</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4">
+                                <div class="bg_primary_plan p-3 border_highlight" id="cmborder_highlight">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h6 class="font-weight-bold text_grey">Current Month</h6>
+                                            <p class="font_12 font-weight-normal text_grey" id="currentmonth"></p>
+                                        </div>
+
+                                        <h3 class="font-weight-bold text_primary">
+                                            734<span class="font-weight-normal font_18">kWh</span>
+                                            <i class="fas fa-caret-down font_16 text_success"></i> <span class="font_12 text_grey font-weight-normal">7.5%</span>
+                                        </h3>
+                                    </div>
+                                    <h1 style="border: 1px dashed #00335C"></h1>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <p class="font_14 font-weight-normal text_grey">Weekly Usage</p>
+                                        <p class="font_14 text_primary font-weight-bold">249 kWh</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="font_14 font-weight-normal text_grey">Daily Usage (kWh/day)</p>
+                                        <p class="font_14 text_primary font-weight-bold">46 kWh</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4">
+                                <div class="bg_primary_plan p-3">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h6 class="font-weight-bold text_grey">Projected Month</h6>
+                                            <p class="font_12 font-weight-normal text_grey" id="projectedmonth"></p>
+                                        </div>
+
+                                        <h3 class="font-weight-bold text_primary">
+                                            734<span class="font-weight-normal font_18">kWh</span>
+                                            <i class="fas fa-caret-down font_16 text_success"></i> <span class="font_12 text_grey font-weight-normal">7.5%</span>
+                                        </h3>
+                                    </div>
+                                    <h1 style="border: 1px dashed #00335C"></h1>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <p class="font_14 font-weight-normal text_grey">Weekly Usage</p>
+                                        <p class="font_14 text_primary font-weight-bold">249 kWh</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="font_14 font-weight-normal text_grey">Daily Usage (kWh/day)</p>
+                                        <p class="font_14 text_primary font-weight-bold">46 kWh</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12" id="billuncheck">
+                    <div class="bg_primary p-3" style="border-radius: 0px 0px 8px 8px">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-5">
+                                <h4 class="text-white font-weight-normal">Billing Amount</h4>
+                                <p class="font_14 text-white">May 1 - May 31, 2021 bill cycle</p>
+                            </div>
+                            <div class="d-flex justify-content-end align-items-center col-xl-6 col-lg-6 col-md-7">
+                                <h1 class="font-weight-normal text-white"><span class="font_12 text_success"><i class="fas fa-arrow-down"></i> 12% </span>$98.55</h1>
+                                <button class="btn btn_primary_outline pl-5 pr-5 ml-3">Pay Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-12" id="billcheck">
+                    <div class="row">
+                        <div class="col-xl-6 col-md-12 col-lg-6">
+                            <div class="bg_primary p-3 d-flex justify-content-between align-items-center" style="border-radius: 0px 0px 8px 8px">
+                                <div>
+                                    <h4 class="text-white font-weight-normal">Cost to Date</h4>
+                                    <p class="font_14 text-white">May 1 - May 15, 2021</p>
+                                </div>
+                                <h1 class="text-white font-weight-normal">$23.65</h1>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-md-12 col-lg-6">
+                            <div class="bg_primary p-3 d-flex justify-content-between align-items-center" style="border-radius: 0px 0px 8px 8px">
+                                <div>
+                                    <h4 class="text-white font-weight-normal">Projected</h4>
+                                    <p class="font_14 text-white">May 15 - May 31, 2021</p>
+                                </div>
+                                <h1 class="text-white font-weight-normal">$60.05</h1>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div id="weeklymenu" class="tab-pane fade">
+            <div class="row pl-2 pr-2">
+                <div class="col-xl-12">
+                    <div class="bg-white p-3">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <h4 class="font-weight-normal d-inline-block">Energy Usage &nbsp; <i class="far fa-question-circle"></i></h4>
+
+                                <div class="float-right d-flex flex-row align-items-center">
+
+                                    <ul class="nav chart_tabs nav-tabs ml-3" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link chart active" data-toggle="tab" href="#weeklychart"><i class="far fa-chart-bar"></i></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link chart" data-toggle="tab" href="#weeklytable"><i class="fas fa-list-ul"></i></a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+
+
+
+
+
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div id="weeklychart" class="container tab-pane active mt-4 mb-3">
+                                        <div class="chartContainer" id="weeklychartContainer" style="height: 400px; width: 100%;">
+                                        </div>
+                                    </div>
+                                    <div id="weeklytable" class="container tab-pane fade">
+                                        <div class="table-responsive mt-4 mb-4">
+                                            <table class="table table-borderless" id="weeklist">
+                                                <thead class="text-white bg_primary">
+                                                    <tr>
+                                                        <th>Date</th>
+                                                        <th>kWh</th>
+                                                        <th>Avg. Temp F</th>
+                                                        <th>Cost $</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="table-striped">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-xl-4 col-lg-4 col-md-4">
+                                <div class="bg_primary_plan p-3" id="pwborder_highlight">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h6 class="font-weight-bold text_grey">Previous Week</h6>
+                                            <p class="font_12 font-weight-normal text_grey">Apr 1 - Apr 30, 2021</p>
+                                        </div>
+
+                                        <h3 class="font-weight-bold text_primary">
+                                            734<span class="font-weight-normal font_18">kWh</span>
+                                            <i class="fas fa-caret-down font_16 text_success"></i> <span class="font_12 text_grey font-weight-normal">7.5%</span>
+                                        </h3>
+                                    </div>
+                                    <h1 style="border: 1px dashed #00335C"></h1>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <p class="font_14 font-weight-normal text_grey">Weekly Usage</p>
+                                        <p class="font_14 text_primary font-weight-bold">249 kWh</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="font_14 font-weight-normal text_grey">Daily Usage (kWh/day)</p>
+                                        <p class="font_14 text_primary font-weight-bold">46 kWh</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4">
+                                <div class="bg_primary_plan p-3 border_highlight" id="cwborder_highlight">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h6 class="font-weight-bold text_grey">Current Week</h6>
+                                            <p class="font_12 font-weight-normal text_grey">Apr 1 - Apr 30, 2021</p>
+                                        </div>
+
+                                        <h3 class="font-weight-bold text_primary">
+                                            734<span class="font-weight-normal font_18">kWh</span>
+                                            <i class="fas fa-caret-down font_16 text_success"></i> <span class="font_12 text_grey font-weight-normal">7.5%</span>
+                                        </h3>
+                                    </div>
+                                    <h1 style="border: 1px dashed #00335C"></h1>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <p class="font_14 font-weight-normal text_grey">Weekly Usage</p>
+                                        <p class="font_14 text_primary font-weight-bold">249 kWh</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="font_14 font-weight-normal text_grey">Daily Usage (kWh/day)</p>
+                                        <p class="font_14 text_primary font-weight-bold">46 kWh</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4">
+                                <div class="bg_primary_plan p-3">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h6 class="font-weight-bold text_grey">Projected Week</h6>
+                                            <p class="font_12 font-weight-normal text_grey">Apr 1 - Apr 30, 2021</p>
+                                        </div>
+
+                                        <h3 class="font-weight-bold text_primary">
+                                            734<span class="font-weight-normal font_18">kWh</span>
+                                            <i class="fas fa-caret-down font_16 text_success"></i> <span class="font_12 text_grey font-weight-normal">7.5%</span>
+                                        </h3>
+                                    </div>
+                                    <h1 style="border: 1px dashed #00335C"></h1>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <p class="font_14 font-weight-normal text_grey">Weekly Usage</p>
+                                        <p class="font_14 text_primary font-weight-bold">249 kWh</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="font_14 font-weight-normal text_grey">Daily Usage (kWh/day)</p>
+                                        <p class="font_14 text_primary font-weight-bold">46 kWh</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="dailymenu" class="tab-pane fade">
+            <div class="row pl-2 pr-2">
+                <div class="col-xl-12">
+                    <div class="bg-white p-3">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="row align-items-center">
+                                    @*<h4 class="font-weight-normal d-inline-block">Energy Usage &nbsp; <i class="far fa-question-circle"></i></h4>*@
+                                    <div class="col-xl-4 col-lg-4 text-xl-left text-lg-left text-center mb-xl-0 mb-lg-0 mb-3">
+                                        <h4 class="font-weight-normal d-inline-block">Energy Usage &nbsp; <i class="far fa-question-circle"></i></h4>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-6 text-center mb-xl-0 mb-lg-0 mb-md-0 mb-3">
+                                        <i class="fas fa-chevron-left" id="dailyleftarrow"></i>
+
+                                        <span class="font_14 font-weight-bold ml-3 mr-3">
+                                            <label class="usage_dot mb-0"></label> &nbsp;
+                                            <span id="dailydate"></span>
+                                        </span>
+                                        <i class="fas fa-chevron-right" id="dailyrightarrow"></i>
+                                    </div>
+                                    @*<div class="float-right d-flex flex-row align-items-center">*@
+                                    <div class="col-xl-4 col-lg-4 col-md-6 pl-lg-0 d-flex flex-row align-items-center justify-content-end">
+                                        <ul class="nav chart_tabs nav-tabs ml-3" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link chart active" data-toggle="tab" href="#dailychart"><i class="far fa-chart-bar"></i></a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link chart" data-toggle="tab" href="#dailytable"><i class="fas fa-list-ul"></i></a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+
+
+
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div id="dailychart" class="container tab-pane active mt-4 mb-3">
+                                        <div class="chartContainer" id="dailychartContainer" style="height: 400px; width: 100%;">
+                                        </div>
+                                    </div>
+                                    <div id="dailytable" class="container tab-pane fade">
+                                        <div class="table-responsive mt-4 mb-4">
+                                            <table class="table table-borderless" id="daylist">
+                                                <thead class="text-white bg_primary">
+                                                    <tr>
+                                                        <th>Hourly</th>
+                                                        <th>kWh</th>
+                                                        <th>Avg. Temp F</th>
+                                                        <th>Cost $</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="table-striped">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-xl-4 col-lg-4 col-md-4">
+                                <div class="bg_primary_plan p-3" id="pdborder_highlight">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h6 class="font-weight-bold text_grey">Previous Day</h6>
+                                            <p class="font_12 font-weight-normal text_grey" id="previousday"></p>
+                                        </div>
+
+                                        <h3 class="font-weight-bold text_primary">
+                                            734<span class="font-weight-normal font_18">kWh</span>
+                                            <i class="fas fa-caret-down font_16 text_success"></i> <span class="font_12 text_grey font-weight-normal">7.5%</span>
+                                        </h3>
+                                    </div>
+                                    <h1 style="border: 1px dashed #00335C"></h1>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <p class="font_14 font-weight-normal text_grey">Weekly Usage</p>
+                                        <p class="font_14 text_primary font-weight-bold">249 kWh</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="font_14 font-weight-normal text_grey">Daily Usage (kWh/day)</p>
+                                        <p class="font_14 text_primary font-weight-bold">46 kWh</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4">
+                                <div class="bg_primary_plan p-3 border_highlight" id="cdborder_highlight">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h6 class="font-weight-bold text_grey">Current Day</h6>
+                                            <p class="font_12 font-weight-normal text_grey" id="currentday"></p>
+                                        </div>
+
+                                        <h3 class="font-weight-bold text_primary">
+                                            734<span class="font-weight-normal font_18">kWh</span>
+                                            <i class="fas fa-caret-down font_16 text_success"></i> <span class="font_12 text_grey font-weight-normal">7.5%</span>
+                                        </h3>
+                                    </div>
+                                    <h1 style="border: 1px dashed #00335C"></h1>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <p class="font_14 font-weight-normal text_grey">Weekly Usage</p>
+                                        <p class="font_14 text_primary font-weight-bold">249 kWh</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="font_14 font-weight-normal text_grey">Daily Usage (kWh/day)</p>
+                                        <p class="font_14 text_primary font-weight-bold">46 kWh</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4">
+                                <div class="bg_primary_plan p-3">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h6 class="font-weight-bold text_grey">Projected Day</h6>
+                                            <p class="font_12 font-weight-normal text_grey" id="projectedday"></p>
+                                        </div>
+
+                                        <h3 class="font-weight-bold text_primary">
+                                            734<span class="font-weight-normal font_18">kWh</span>
+                                            <i class="fas fa-caret-down font_16 text_success"></i> <span class="font_12 text_grey font-weight-normal">7.5%</span>
+                                        </h3>
+                                    </div>
+                                    <h1 style="border: 1px dashed #00335C"></h1>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <p class="font_14 font-weight-normal text_grey">Weekly Usage</p>
+                                        <p class="font_14 text_primary font-weight-bold">249 kWh</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="font_14 font-weight-normal text_grey">Daily Usage (kWh/day)</p>
+                                        <p class="font_14 text_primary font-weight-bold">46 kWh</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    @* Energy tips *@
+    <div class="row">
+        <div class="col-xl-12 d-flex justify-content-between align-items-center mt-4 mb-4">
+            <h3 class="font-weight-normal d-flex align-items-center">
+                ENERGY TIPS
+                <img src="~/Content/images/Bulb.png" class="ml-2" />
+            </h3>
+            <h6 class="font-weight-bold text_primary" id="viewallenergytips">View All</h6>
+        </div>
+
+        <div class="col-xl-4 col-lg-4 col-md-6">
+            <div class="tips_bg_1 p-3 d-flex align-items-end">
+                <h6 class="font-weight-bold text-white">6 SMART SEASONAL ENERGY-SAVING TIPS</h6>
+            </div>
+            <div class="bg-white p-3">
+                <p class="font-weight-normal font_14">Fall is here! And it’s time to embrace the things that define the season. Formany, that includes football, family outings-and holiday cleaning.</p>
+                <h6 class="font-weight-bold text_primary read_now">Read Now</h6>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-6">
+            <div class="tips_bg_2 d-flex align-items-end p-3">
+                <h6 class="font-weight-bold text-white">5 ENERGY SAVINGS HACK FOR YOUR LAUNDRY ROOMS</h6>
+            </div>
+            <div class="bg-white p-3">
+                <p class="font-weight-normal font_14">Fall is here! And it’s time to embrace the things that define the season. Formany, that includes football, family outings-and holiday cleaning.</p>
+                <h6 class="font-weight-bold text_primary read_now">Read Now</h6>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-6">
+            <div class="tips_bg_3 d-flex align-items-end p-3">
+                <h6 class="font-weight-bold text-white">4 COOL WAYS TO KEEP THE HEAT OUT OF YOUR GARAGE</h6>
+            </div>
+            <div class="bg-white p-3">
+                <p class="font-weight-normal font_14">Fall is here! And it’s time to embrace the things that define the season. Formany, that includes football, family outings-and holiday cleaning.</p>
+                <h6 class="font-weight-bold text_primary read_now">Read Now</h6>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+<script src="~/Scripts/Usage/History.js"></script>
+

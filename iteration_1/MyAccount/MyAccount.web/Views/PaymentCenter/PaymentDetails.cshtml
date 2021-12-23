@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewBag.Title = "PaymentDetails";
+    Layout = "~/Views/Shared/Header_Layout.cshtml";
+
+    <title>Payment Details</title>
+}
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Content/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/Scripts/PaymentCenter/PaymentDetails.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
+<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+    var transactionId = '@ViewData["transactionId"].ToString()';
+</script>
+
+<div class="container pl-0 pr-0 padding_tb Payment_history">
+    <div class="row pt-3">
+        <div class="col-xl-9 col-lg-9 col-md-6">
+            <i class="fas fa-chevron-left font_20" id="backBtn"></i>
+            <h4 class="ml-3 font-weight-normal d-inline">Payment Details</h4>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-6">
+            <div class="position-relative">
+                <input type="text" id="monthSelection" name="SelectedDate" readonly="readonly" class="form-control bg-white" placeholder="Select a Month" />
+
+                <span id="monthSelectionError" style="color:Red;"></span>
+            </div>
+        </div>
+
+        <div class="col-xl-12">
+            <div class="bg-white p-4 border_radius_8">
+                <h6 class="font-weight-normal">Tranaction ID</h6>
+                <div class="d-flex justify-content-between flex-row align-items-center">
+                    <h6 class="font-weight-bold mb-0" id="transactionId"></h6>
+                    <img src="~/Content/images/payment_copy.png" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-12 mt-3">
+            <div class="bg-white p-4 border_radius_8">
+                <h6 class="font-weight-normal">Add Funds</h6>
+                <div class="d-flex flex-row justify-content-between">
+                    <h6 class="font-weight-bold" id="amountUsed"></h6>
+                    <h6 class="text_primary font-weight-bold" id="addAgainBtn">Add Again</h6>
+                </div>
+                <p class="mb-0 font_12">Usage from last recharge: 234 kWh</p>
+            </div>
+        </div>
+
+        <div class="col-xl-12 mt-3">
+            <div class="bg-white p-4 border_radius_8">
+                <h6 class="font-weight-normal">
+                    <img src="~/Content/images/payment_master.png" /> &nbsp; Debited From
+                </h6>
+                <h6 class="font-weight-bold">2Master Card - 1452</h6>
+            </div>
+        </div>
+
+        <div class="col-xl-12 mt-3">
+            <div class="bg-white p-4 border_radius_8">
+                <h6 class="font-weight-normal mb-0">
+                    <img src="~/Content/images/Header_FAQ.png" /> &nbsp; Contact Gexa Support
+                </h6>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal" id="addSuccessfullModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <!-- Modal body -->
+            <div class="modal-body text-white text-center payment_modal_bg">
+                <img src="~/Content/images/payment_check.png" />
+                <h4 class="font-weight-normal">Add Successfull</h4>
+                <h5 class="mt-4 font-weight-bold">Energy Optimizer</h5>
+                <h6 class="mt-3">
+                    Your fund of $202.00 has been successfully submitted
+                    with Transaction ID 13668071186
+                </h6>
+                <h6 class="mt-4">
+                    Debited From : <span>****4572</span>
+                    <img src="~/Content/images/payment_master.png" />
+                </h6>
+                <p class="font_14">29/11/2021</p>
+
+                <div class="mt_40">
+                    <button class="btn pl-4 pr-4 text-white font-weight-bold mr-4" id="backToHome">Back To Home</button>
+                    <button class="btn btn_primary_outline pl-5 pr-5 border-0">Add Again</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

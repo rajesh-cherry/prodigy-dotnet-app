@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "PaymentLocation";
+    Layout = "~/Views/Shared/Header_Layout.cshtml";
+
+    <title>Payment Locations</title>
+}
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Content/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/Scripts/PaymentCenter/PaymentLocation.js"></script>
+<script src="~/Scripts/Helper/CommonFunctions.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+<div class="container pl-0 pr-0 padding_tb Payment">
+    <input type="hidden" id="baseURL" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["baseURL"]' />
+    <div class="row pt-3">
+        <div class="col-xl-8 col-md-6 col-lg-6">
+            <i class="fas fa-chevron-left font_20"></i>
+            <h4 class="ml-3 font-weight-normal d-inline">Payment Locations</h4>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-6">
+            <div class="form-group loc-search">
+                <span class="fa fa-search form-control-feedback"></span>
+                <input type="text" class="form-control" placeholder="Search">
+            </div>
+        </div>
+
+        <div class="col-xl-12 mt-4 mb-4">
+            <div class="row">
+                <div class="col-xl-8">
+                    <button class="btn btn_primary_outline">
+                        <img src="~/Content/images/loc_moneygram.png" /> MoneyGram
+                    </button>
+                    <button class="btn btn_primary ml-2">
+                        <img src="~/Content/images/loc_ace.png" /> Ace
+                    </button>
+                    <button class="btn btn_primary ml-2">
+                        <img src="~/Content/images/loc_doller.png" /> Dollar General
+                    </button>
+                    <button class="btn btn_primary ml-2">
+                        <img src="~/Content/images/loc_family.png" /> Family General
+                    </button>
+                </div>
+                <div class="col-xl-4">
+                    <ul class="nav chart_tabs nav-tabs ml-3 float-right" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link chart active" data-toggle="tab" href="#chart"><i class="far fa-map"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link chart" data-toggle="tab" href="#table"><i class="fas fa-list-ul"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Tab panes -->
+            <div class="tab-content clear_both mt-4">
+                <div id="chart" class="container tab-pane active p-0">
+                    <img src="~/Content/images/loc_map.png" class="w-100" />
+                </div>
+                <div id="table" class="container tab-pane p-0">
+                    <div class="row" id="paymentlocations">                        
+                        @*<div class="col-xl-4 col-lg-4 col-md-6 pr-lg-0 mt-3">
+                            <div class="bg-white border_radius_8 table-responsive">
+                                <table class="table table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="3" class="font_16" id="Name">
+                                               <h2></h2>
+                                            </td>
+                                            <td class="font_14 text-right">
+                                                <img src="~/Content/images/location_direction.png" /> <br />
+                                                2.4 mi
+                                            </td>
+                                        </tr>
+                                        <tr class="font_14">
+                                            <td class="text-center"><img src="~/Content/images/location_proc.png" /></td>
+                                            <td class="pl-0"> Processing Time:2 hrs</td>
+                                            <td class="text-center"><img src="~/Content/images/location_map.png" /></td>
+                                            <td class="pl-0"> 133 Peachtree Street, NE, Atlanta, GA</td>
+                                        </tr>
+                                        <tr class="font_14">
+                                            <td class="text-center"><img src="~/Content/images/location_phone.png" /></td>
+                                            <td class="pl-0">(972) 973-4793</td>
+                                            <td class="text-center"><img src="~/Content/images/location_time.png" /> </td>
+                                            <td class="font-weight-bold pl-0">Open Untill 7:59 PM</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

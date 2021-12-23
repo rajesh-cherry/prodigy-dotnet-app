@@ -1,0 +1,157 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+    <style>
+        input[type=checkbox] {
+            visibility: hidden;
+        }
+
+        .geekmark {
+            position: absolute;
+            top: 3px;
+            left: 0;
+            height: 16px;
+            width: 16px;
+            border: 1.5px solid #333333;
+            box-sizing: border-box;
+            border-radius: 2px;
+        }
+
+
+        /* Specify the background color to be
+        shown when checkbox is checked */
+        .main input:checked ~ .geekmark {
+            background-color: #00335C;
+        }
+
+        /* Checkmark to be shown in checkbox */
+        /* It is not be shown when not checked */
+        .geekmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        /* Display checkmark when checked */
+        .main input:checked ~ .geekmark:after {
+            display: block;
+        }
+
+        /* Styling the checkmark using webkit */
+        /* Rotated the rectangle by 45 degree and
+        showing only two border to make it look
+        like a tickmark */
+        .main .geekmark:after {
+            left: 4px;
+            bottom: 2px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-radius: 0px;
+            border-width: 0 2px 2px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+    </style>
+}
+
+<script src="~/Scripts/Account/Login.js"></script>
+<script type="text/javascript">
+        var user = '@ViewData["user"].ToString()';
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+<div>
+    <h5 id="headerName" class="font-weight-bold mb-0 text-center mt-5">Hello, </h5>
+    <h6 class="mt-3 font-weight-normal text-center text_grey">Enter password to access your account</h6>
+    <div class="text-center mt-3" id="editemail">
+        @*<h6 id="headerAccount" style="font-weight:normal">Account Number: </h6>*@
+        <h6 class="font-weight-normal">
+            <span id="headerEmail"> Email: </span> &nbsp;<a><img id="pen_1" style="cursor:pointer;" src="~/Content/images/Pen_1.png" class="align-baseline" /></a>
+        </h6>
+    </div>
+    <div class="text-center mt-3" id="editaccount">
+        <h6 id="headerEmailaccount" style="font-weight:normal">Email:  </h6>
+        <h6 class="font-weight-normal">
+            <span id="headerAccount">Account Number: </span> &nbsp;<a><img id="pen_2" style="cursor:pointer;" src="~/Content/images/Pen_1.png" class="align-baseline" /></a>
+        </h6>
+    </div>
+    <input id="getbrandUrl" value='@System.Configuration.ConfigurationManager.AppSettings["BrandCode"]' style="display:none" />
+
+    <input type="hidden" id="hnProdUrl" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["AccountPayURL"]' />
+
+    <form id="loginForm" class="mt_top">
+        <div class="form-group">
+            <label for="pwd">Enter Password</label>
+            <div class="input-group mb-3">
+                <input type="password" class="form-control" id="txtPassword" name="password" placeholder="Enter Password"><i id="show_password" style=" position: absolute; right: 10px; z-index: 10;top:9px;"></i>
+
+            </div>
+            <div class="input-group-append">
+                <span id="capWarning" style="display :none;color:red"><i class="fas fa-exclamation-triangle"></i> Caps lock is on</span>
+            </div>
+            <div class="input-group mb-3">
+                <div id="errorMsg" style="color:red"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="form-check remember_text">
+                    <label class="form-check-label main">
+                        <input id="chkRememberMe" type="checkbox" class="form-check-input" value="">Remember me
+                        <span class="geekmark"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                <h6 class=" forgot primary_color forgot_text font-weight-normal" data-toggle="modal">@Html.ActionLink("Forgot Password", "ForgotPassword", "Account", null, new { id = "ForgotPassowrd" })</h6>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="button" id="btnLogin" class="btn mt_80 w-50 btn_primary_outline btnNext">Submit</button>
+        </div>
+    </form>
+    <div class="loader" id="AjaxLoader" style="display: none;">
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal" style="background-color:#00000082">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header border border-bottom-0 align-items-center justify-content-start">
+                    <img id="vectorforgot" src="~/Content/images/VectorForgot.png" class="mr-3" />
+                    <h4 class="modal-title font-weight-bold">Forgot Password?</h4>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body pt-0 pb-0">
+                    <p id="txtdisable" class="font_14">Please wait for 5 minutes before you try again or reset your password now.@*After multiple consecutive unsuccessful login attempts, your account has been locked. Please wait for <label id="timeremaining"></label> minutes before you try again or reset your password.*@</p>
+                    <p id="txtenable" class="font_14"> You have made multiple unsuccessful login attempts. Please reset your password or try again.@*You attempted multiple consecutive unsuccessful login attempts. Please reset your password or can try again.*@</p>
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer border-top-0">
+                    <div id="pwdDisabled">
+                        <label id="timer" class="font_14 font-weight-bold mr-4" style="cursor:pointer;"></label>
+                        <button type="button" id="rp" class="btn btn_danger pl-5 pr-5 font_16 font-weight-bold" data-dismiss="modal">Reset Password</button>
+                    </div>
+                    <div id="pwdEnabled" style="display:none">
+                        <label class="font_14 font-weight-bold mr-4" style="cursor:pointer;" id="cancel">Try Again</label>
+                        <button type="button" class="btn btn_primary font_16 pl-5 pr-5 font-weight-bold" data-dismiss="modal" onclick="location.href='/Forgot/ForgotPassword'">Reset Password</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Header_Layout.cshtml";
+    @*<link href="~/Content/css/Layout.css" rel="stylesheet" />*@
+
+    <style>
+        .main_box {
+            height: 355px;
+            background: #FFFFFF;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+        }
+
+        .box {
+            background: #FFFFFF;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            height: 300px
+        }
+    </style>
+}
+<input type="hidden" id="hnProdUrl" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["AccountPayURL"]' />
+<input id="getbrandUrl" value="@System.Configuration.ConfigurationManager.AppSettings["BrandCode"]" style="display:none" />
+
+<div class="container header">
+    <div class="row padding_tb text-center">
+        <div class="col-xl-6">
+            <h4 class="text-left font-weight-normal">My Account</h4>
+        </div>
+        <div class="col-xl-6 text-right">
+
+            <div class="dropdown ">
+                <button type="button" class="btn btn_focus dropdown-toggle" data-toggle="dropdown">
+                    Account Number:  10689702-0
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="#" @Html.ActionLink("Account", "Account", "Account")</a>
+                    <a class="dropdown-item" href="#">@Html.ActionLink("BillHistory", "BillHistory", "BillHistory")</a>
+                    <a class="dropdown-item" href="#">@Html.ActionLink("ChangePassword", "ChangePassword", "ChangePassword")</a>
+                    <a class="dropdown-item" href="#">@Html.ActionLink("EditSecondary", "EditSecondary", "EditSecondary")</a>
+                    <a class="dropdown-item" href="#">@Html.ActionLink("EnergyInsights", "EnergyInsights", "EnergyInsights")</a>
+                    <a class="dropdown-item" href="#">@Html.ActionLink("ManageAutoPay", "ManageAutoPay", "ManageAutoPay")</a>
+                    <a class="dropdown-item" href="#">@Html.ActionLink("PersonalInfo", "PersonalInfo", "PersonalInfo")</a>
+                    <a class="dropdown-item" href="#">@Html.ActionLink("ProfileSettings", "ProfileSettings", "ProfileSettings")</a>
+                    <a class="dropdown-item" href="#">@Html.ActionLink("MyRewards", "MyRewards", "MyRewards")</a>
+                    <a class="dropdown-item" href="#">@Html.ActionLink("Billing Options", "BillingOptions", "BillingOptions")</a>
+                    <a class="dropdown-item" href="#">@Html.ActionLink("BudgetBilling", "BudgetBilling", "BudgetBilling")</a>
+                    <a class="dropdown-item" href="#">@Html.ActionLink("MakePayment", "MakePayment", "MakePayment")</a>
+                    <a class="dropdown-item" href="#">@Html.ActionLink("PaymentAutopay", "PaymentAutopay", "PaymentAutopay")</a>
+                    <a class="dropdown-item" href="#">@Html.ActionLink("PaymentFaq", "PaymentFaq", "PaymentFaq")</a>
+                    <a class="dropdown-item" href="#">@Html.ActionLink("TransferMoney", "TransferMoney", "TransferMoney")</a>
+                    <a class="dropdown-item" href="#">@Html.ActionLink("PaymentHistory", "PaymentHistory", "PaymentHistory")</a>
+                    <a class="dropdown-item" href="#">@Html.ActionLink("PaymentCenter", "PaymentCenter", "PaymentCenter")</a>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-md-6 mt-5">
+            <div class="main_box d-flex flex-column align-items-center justify-content-center">
+                <img src="~/Content/images/Personal.png" />
+                <h3 class="font-weight-bold mt-3 pl-3 pr-3">@Html.ActionLink("Personal Information", "PersonalInfo", "PersonalInfo")</h3>
+                <h6 class="font-weight-normal pl-4 pr-4">
+                    Provide personal details and how we can reach you
+                </h6>
+            </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6  mt-5">
+            <div class="main_box d-flex flex-column align-items-center justify-content-center">
+                <img src="~/Content/images/Dashboard.png" />
+                <h3 class="font-weight-bold mt-3 pl-3 pr-3">Customize Dashboard</h3>
+                <h6 class="font-weight-normal pl-4 pr-4">
+                    Home screen as per your preferences
+                </h6>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 mt-4">
+            <div class="box d-flex flex-column align-items-center justify-content-center">
+                <img src="~/Content/images/Referral.png" />
+                <h3 class="font-weight-bold mt-3 pl-3 pr-3">@Html.ActionLink("Referral & Rewards", "MyRewards", "MyRewards")</h3>
+                <h6 class="font-weight-normal pl-4 pr-4">
+                    Earn $50 for every referral
+                </h6>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 mt-4">
+            <div class="box d-flex flex-column align-items-center justify-content-center">
+                <img src="~/Content/images/Payment.png" />
+                <h3 class="font-weight-bold mt-3 pl-3 pr-3">@Html.ActionLink("Payment Center", "PaymentCenter", "PaymentCenter")</h3>
+                <h6 class="font-weight-normal pl-4 pr-4">
+                    Payment history & manage <br /> payment accounts
+                </h6>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 mt-4">
+            <div class="box d-flex flex-column align-items-center justify-content-center">
+                <img src="~/Content/images/Account.png" />
+                <h3 class="font-weight-bold mt-3 pl-3 pr-3">@Html.ActionLink("Account", "ProfileSettings", "ProfileSettings")</h3>
+                <h6 class="font-weight-normal pl-4 pr-4">
+                    View and update your personal <br /> information
+                </h6>
+            </div>
+        </div>
+    </div>
+
+</div>

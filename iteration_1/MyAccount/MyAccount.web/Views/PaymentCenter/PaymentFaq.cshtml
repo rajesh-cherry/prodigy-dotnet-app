@@ -1,0 +1,229 @@
+﻿
+@{
+    ViewBag.Title = "PaymentFaq";
+    Layout = "~/Views/Shared/Header_Layout.cshtml";
+
+    <title>Payment FAQs</title>
+}
+
+<div class="container pl-0 pr-0 padding_tb Payment Payment_faq">
+    <div class="row pt-3">
+
+        <div class="col-xl-12 col-md-12 col-lg-12">
+            <i class="fas fa-chevron-left font_20"></i>
+            <h4 class="ml-3 font-weight-normal d-inline">Payment FAQs</h4>
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-md-6 mt_50">
+            <h3 class="font-weight-bold">What’s your query about?</h3>
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-md-6 mt_50">
+            <div class="form-group loc-search">
+                <span class="fa fa-search form-control-feedback"></span>
+                <input type="text" class="form-control" placeholder="Search">
+            </div>
+        </div>
+
+        <div class="col-xl-12 mt-4">
+            <ul class="nav nav-tabs payment_tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#home">All</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu1">Extension</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu2">Payment History</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu3">Payment Locations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu4">Budget Billing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu5">Payment FAQs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu6">Payment Accounts</a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div id="home" class="tab-pane active">
+
+                    @*Accordian Start*@
+                    <div id="accordion">
+
+                        <div class="card border-0">
+                            <div class="card-header bg-white">
+                                <h5 class="d-inline font-weight-bold">
+                                    Can I delete my saved cards?
+                                </h5>
+                                <i class=" collapsed card-link fas fa-chevron-down float-right" data-toggle="collapse" href="#collapseOne"></i>
+                            </div>
+                            <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                                <div class="card-body">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card border-0 mt-2">
+                            <div class="card-header bg-white">
+                                <h5 class="d-inline font-weight-bold">
+                                    Why is my Card being saved on Frontier Utilities?
+                                </h5>
+                                <i class=" collapsed card-link fas fa-chevron-down float-right" data-toggle="collapse" href="#collapseTwo"></i>
+                            </div>
+                            <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                                <div class="card-body">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card border-0 mt-2">
+                            <div class="card-header bg-white">
+                                <h5 class="d-inline font-weight-bold">
+                                    What all cards can I save on Frontier Utilities?
+                                </h5>
+                                <i class=" collapsed card-link fas fa-chevron-down float-right" data-toggle="collapse" href="#collapseThree"></i>
+                            </div>
+                            <div id="collapseThree" class="collapse" data-parent="#accordion">
+                                <div class="card-body">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card border-0 mt-2">
+                            <div class="card-header bg-white">
+                                <h5 class="d-inline font-weight-bold">
+                                    What all cards can I save on Frontier Utilities?
+                                </h5>
+                                <i class=" collapsed card-link fas fa-chevron-down float-right" data-toggle="collapse" href="#collapseFour"></i>
+                            </div>
+                            <div id="collapseFour" class="collapse" data-parent="#accordion">
+                                <div class="card-body">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card border-0 mt-2">
+                            <div class="card-header bg-white">
+                                <h5 class="d-inline font-weight-bold">
+                                    What all cards can I save on Frontier Utilities?
+                                </h5>
+                                <i class=" collapsed card-link fas fa-chevron-down float-right" data-toggle="collapse" href="#collapseFive"></i>
+                            </div>
+                            <div id="collapseFive" class="collapse" data-parent="#accordion">
+                                <div class="card-body">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="menu1" class="tab-pane fade">
+                    <div class="card border-0">
+                        <div class="card-header bg-white">
+                            <h5 class="d-inline font-weight-bold">
+                                Extension
+                            </h5>
+                            <i class=" collapsed card-link fas fa-chevron-down float-right" data-toggle="collapse" href="#collapse32"></i>
+                        </div>
+                        <div id="collapse32" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="menu2" class="tab-pane fade">
+                    <div class="card border-0">
+                        <div class="card-header bg-white">
+                            <h5 class="d-inline font-weight-bold">
+                                Payment History
+                            </h5>
+                            <i class=" collapsed card-link fas fa-chevron-down float-right" data-toggle="collapse" href="#collapse32"></i>
+                        </div>
+                        <div id="collapse32" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="menu3" class="tab-pane fade">
+                    <div class="card border-0">
+                        <div class="card-header bg-white">
+                            <h5 class="d-inline font-weight-bold">
+                                Payment Locations
+                            </h5>
+                            <i class=" collapsed card-link fas fa-chevron-down float-right" data-toggle="collapse" href="#collapse32"></i>
+                        </div>
+                        <div id="collapse32" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="menu4" class="tab-pane fade">
+                    <div class="card border-0">
+                        <div class="card-header bg-white">
+                            <h5 class="d-inline font-weight-bold">
+                                Budget Billing
+                            </h5>
+                            <i class=" collapsed card-link fas fa-chevron-down float-right" data-toggle="collapse" href="#collapse32"></i>
+                        </div>
+                        <div id="collapse32" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="menu5" class="tab-pane fade">
+                    <div class="card border-0">
+                        <div class="card-header bg-white">
+                            <h5 class="d-inline font-weight-bold">
+                                Payment FAQs
+                            </h5>
+                            <i class=" collapsed card-link fas fa-chevron-down float-right" data-toggle="collapse" href="#collapse32"></i>
+                        </div>
+                        <div id="collapse32" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="menu6" class="tab-pane fade">
+                    <div class="card border-0">
+                        <div class="card-header bg-white">
+                            <h5 class="d-inline font-weight-bold">
+                                Payment Accounts
+                            </h5>
+                            <i class=" collapsed card-link fas fa-chevron-down float-right" data-toggle="collapse" href="#collapse32"></i>
+                        </div>
+                        <div id="collapse32" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

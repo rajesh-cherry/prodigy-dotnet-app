@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "MobileAddNewCard";
+    Layout = "~/Views/Shared/Header_Layout.cshtml";
+    @*@System.Web.Optimization.Styles.Render("~/css/Layoutcss")*@
+    <link href="~/Content/css/Layout.css" rel="stylesheet" />
+}
+
+<div class="container pl-0 pr-0 padding_tb">
+    <div class="row pt-3">
+
+        <div class="col-12 d-xl-none d-flex justify-content-between flex-row">
+            <i class="fas fa-chevron-left font_20"></i>
+            <h6 class="font-weight-normal d-inline">Add New Card</h6>
+            <p class="font_14 font-weight-bold text_secondary">Save</p>
+        </div>
+
+        <div class="col-12 d-xl-none mt-4">
+            <div class="d-flex flex-row justify-content-between align-items-start">
+                <p class="font_16 d-inline">Please enter the following details to add your card with frontier</p>
+                <img src="~/Content/images/Payment_card_icon.png" />
+            </div>
+            <div class="form-group mt-4">
+                <label class="font_14 text_grey" for="usr">Name On Card</label>
+                <input placeholder="Your Name" type="text" class="form-control" id="txtUser" name="username">
+            </div>
+            <div class="form-group position-relative">
+                <label class="font_14 text_grey" for="usr">Card Number</label>
+                <input placeholder="Card Number" type="text" class="form-control" id="txtUser" name="username">
+                <img src="~/Content/images/payment_discover.png" class="card_icon" />
+            </div>
+            <div class="row">
+                <div class="form-group col-6">
+                    <label for="sel1" class="text_grey">Expiry Month</label>
+                    <select class="form-control select_form_control" id="sel1">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-6">
+                    <label for="sel2" class="text_grey">Expiry Year</label>
+                    <select class="form-control select_form_control" id="sel2">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-6">
+                    <label class="font_14 text_grey" for="usr">CVV</label>
+                    <input placeholder="Enter CVV Number" type="text" class="form-control" id="txtUser" name="username">
+                </div>
+                <div class="form-group col-6">
+                    <label class="font_14 text_grey" for="usr">Zip Code</label>
+                    <input placeholder="Enter Zip Code" type="text" class="form-control" id="txtUser" name="username">
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+        <div class="col-12 d-xl-none mt-5 justify-content-center flex-row d-flex align-items-center">
+            <img src="~/Content/images/Payment_pci.png" />
+            <span class="font_10 text_grey ml-2">256 bit encryption</span>
+            <img src="~/Content/images/payment_visa.png " class="ml-2" />
+            <img src="~/Content/images/payment_discover.png" class="ml-2" />
+            <img src="~/Content/images/payment_master.png" class="ml-2" />
+        </div>
+
+    </div>
+</div>

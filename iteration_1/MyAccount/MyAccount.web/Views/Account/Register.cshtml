@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "RegisterAccount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+}
+
+
+<script src="~/Scripts/Account/Register.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+<style>
+    .img_circle {
+        width: 61px;
+        height: 61px;
+        border-radius: 50%;
+        background-color: white;
+        z-index: 1;
+        margin-left: -5px;
+    }
+
+    /*.img_circle_select {
+        width: 61px;
+        height: 61px;
+        border-radius: 50%;*/
+    /*background-color: #36A629;*/
+    /*z-index: 1;
+        margin-left: -5px;
+    }*/
+
+    .rectange {
+        width: 30%;
+        height: 20px;
+        background-color: white;
+        margin-left: -5px;
+    }
+
+    /*.rectange_select {
+        width: 30%;
+        height: 20px;
+        background-color: #36A629;
+        margin-left: -5px;
+    }*/
+</style>
+<div class="mt-5">
+
+    <div class="row mb-5 ">
+        <div class="col-xl-12 p-0">
+            <div class="d-flex flex-row justify-content-between align-content-center">
+                <p class="font-weight-normal font_14 mb-0 text-center">
+                    Verify Account <br />
+                    Number
+                </p>
+                <p class="font-weight-normal font_14">
+                    Verify
+                    ID
+                </p>
+                <p class="font-weight-normal font_14 mb-0">
+                    Create
+                    Password
+                </p>
+            </div>
+        </div>
+        <div class="col-xl-12 d-flex flex-row align-items-center mt-3">
+            <div class="d-flex justify-content-center align-items-center img_circle">
+                <img src="~/Content/images/verify_account.png" />
+            </div>
+            <div class="rectange"></div>
+            <div class="d-flex justify-content-center align-items-center img_circle">
+                <img src="~/Content/images/verify_id.png" />
+            </div>
+            <div class="rectange"></div>
+            <div class="d-flex justify-content-center align-items-center img_circle">
+                <img src="~/Content/images/create_password.png" />
+            </div>
+
+        </div>
+    </div>
+
+    <h3 class="text-center mt_top">Register for MyAccount</h3>
+    <h6 class="mt-2 text-center">Please enter your account number</h6>
+    <input type="hidden" id="hnProdUrl" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["AccountPayURL"]' />
+    <input type="hidden" id="getbrandUrl" value='@System.Web.Configuration.WebConfigurationManager.AppSettings["BrandCode"]' />
+    <form id="registerForm" class="form_style">
+        <div class="form-group mt-5">
+            <label for="usr">Account Number</label>
+            <input placeholder="Account Number" type="text" class="form-control" id="txtAccountNumber" name="accountnumber" maxlength="8">
+            <span id="errorAccountNumber" style="display :none;color:red"></span>
+
+        </div>
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <h6 class="primary_color forgot_text">@Html.ActionLink("Can't find your account number?", "Retrieve", "Account")</h6>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="button" id="btnContinue" class="btnContinue btn btn_primary_outline mt-5 w-50">Continue</button>
+        </div>
+    </form>
+    <div class="loader" id="AjaxLoader" style="display: none;">
+    </div>
+</div>
+
